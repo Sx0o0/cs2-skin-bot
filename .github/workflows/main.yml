@@ -1,4 +1,4 @@
-name: CS2 Skin Bot Avançado
+name: CS2 Skin Bot Avançado com Sinais
 
 on:
   schedule:
@@ -25,30 +25,53 @@ jobs:
       - name: Run CS2 Skin Bot
         run: python cs2_skin_bot.py
 
-      - name: Generate Ranking & Graph
+      - name: Generate Ranking, Signals & Graph
         run: |
           python - <<EOF
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Parâmetros de sinal
+MIN_PRICE = 5
+MAX_PRICE = 40
+
+# Carrega histórico
 try:
     df = pd.read_csv('skin_history.csv')
 except FileNotFoundError:
     df = pd.DataFrame(columns=['Skin','Preco','Volume','Score'])
 
+# Cria coluna de sinal
+def sinal(row):
+    if row['Preco'] < MIN_PRICE:
+        return '🟢'
+    elif row['Preco'] > MAX_PRICE:
+        return '🔴'
+    else:
+        return '🟡'
+
 if not df.empty:
+    df['Sinal'] = df.apply(sinal, axis=1)
     df_sorted = df.sort_values('Score', ascending=False)
-    plt.figure(figsize=(10,6))
-    plt.barh(df_sorted['Skin'], df_sorted['Score'], color='green')
+
+    # Define cores para o gráfico baseado no sinal
+    cores = df_sorted['Sinal'].map({'🟢':'green','🟡':'yellow','🔴':'red'})
+
+    plt.figure(figsize=(12,8))
+    plt.barh(df_sorted['Skin'], df_sorted['Score'], color=cores)
     plt.xlabel('Score')
-    plt.title('Ranking de Valorização CS2')
-    plt.savefig('ranking.png')
+    plt.title('Ranking de Valorização CS2 com Sinais')
+    for i, (score, sinal) in enumerate(zip(df_sorted['Score'], df_sorted['Sinal'])):
+        plt.text(score+0.01, i, sinal, va='center')
+    plt.gca().invert_yaxis()
+    plt.tight_layout()
+    plt.savefig('ranking_signals.png')
 EOF
 
       - name: Commit updated files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add skin_history.csv ranking.png
-          git commit -m "Atualiza ranking e gráfico" || echo "Nada para commit"
+          git add skin_history.csv ranking_signals.png
+          git commit -m "Atualiza ranking e sinais" || echo "Nada para commit"
           git push

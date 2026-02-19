@@ -1,30 +1,3 @@
-name: CS2 Skin Bot Avançado
-
-on:
-  schedule:
-    - cron: '0 12 * * *'  # todo dia ao meio-dia UTC
-  workflow_dispatch:
-
-jobs:
-  run-bot:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
-          pip install requests pandas matplotlib
-
-      - name: Run CS2 Skin Bot
-        run: python cs2_skin_bot.py
-
       - name: Generate Ranking & Graph
         run: |
           python - <<EOF
@@ -44,11 +17,3 @@ if not df.empty:
     plt.title('Ranking de Valorização CS2')
     plt.savefig('ranking.png')
 EOF
-
-      - name: Commit updated files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add skin_history.csv ranking.png
-          git commit -m "Atualiza ranking e gráfico" || echo "Nada para commit"
-          git push

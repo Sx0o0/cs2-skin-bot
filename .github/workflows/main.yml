@@ -1,0 +1,35 @@
+name: CS2 Skin Bot
+
+on:
+  schedule:
+    - cron: '0 12 * * *'  # Roda todo dia ao meio-dia UTC
+  workflow_dispatch:  # Permite rodar manualmente
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests pandas
+
+      - name: Run CS2 Skin Bot
+        run: |
+          python cs2_skin_bot.py
+
+      - name: Commit updated history
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add skin_history.csv
+          git commit -m "Atualiza histórico" || echo "Nada para commit"
+          git push

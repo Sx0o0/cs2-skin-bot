@@ -2,7 +2,7 @@ name: CS2 Skin Bot Avançado
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # Roda todo dia ao meio-dia UTC
+    - cron: '0 12 * * *'  # todo dia ao meio-dia UTC
   workflow_dispatch:
 
 jobs:
@@ -23,8 +23,7 @@ jobs:
           pip install requests pandas matplotlib
 
       - name: Run CS2 Skin Bot
-        run: |
-          python cs2_skin_bot.py
+        run: python cs2_skin_bot.py
 
       - name: Generate Ranking & Graph
         run: |
@@ -32,16 +31,14 @@ jobs:
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Carrega histórico
 try:
     df = pd.read_csv('skin_history.csv')
-except:
-    df = pd.DataFrame(columns=['Skin', 'Preco', 'Volume', 'Score'])
+except FileNotFoundError:
+    df = pd.DataFrame(columns=['Skin','Preco','Volume','Score'])
 
-# Cria gráfico de valorização
-plt.figure(figsize=(10,6))
 if not df.empty:
     df_sorted = df.sort_values('Score', ascending=False)
+    plt.figure(figsize=(10,6))
     plt.barh(df_sorted['Skin'], df_sorted['Score'], color='green')
     plt.xlabel('Score')
     plt.title('Ranking de Valorização CS2')

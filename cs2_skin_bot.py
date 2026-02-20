@@ -1,223 +1,221 @@
 # ============================================================
-# 🔥 BOT DE ANÁLISE CS2 - VERSÃO EVOLUÍDA
+# 📦 IMPORTS
 # ============================================================
 
-# =========================
-# 📦 IMPORTS
-# =========================
 import requests
 import csv
 import os
+import pandas as pd
 from datetime import datetime
 
 
-# =========================
-# ⚙ CONFIGURAÇÕES
-# =========================
-APPID = 730
-MIN_PRICE = 5
-MAX_PRICE = 40
+# ============================================================
+# 🎯 CONFIGURAÇÃO DAS SKINS
+# ============================================================
+
+SKINS = {
+    "AK-47 | Slate (Field-Tested)": "730/2/1031",
+    "AK-47 | Ice Coaled (Field-Tested)": "730/2/1143",
+    "USP-S | Cortex (Field-Tested)": "730/2/846",
+    "Glock-18 | Vogue (Field-Tested)": "730/2/930",
+    "M4A1-S | Night Terror (Field-Tested)": "730/2/1144"
+}
+
+API_URL = "https://api.skinport.com/v1/items"
 HISTORY_FILE = "skin_history.csv"
 
-CRASH_ALERT_PERCENT = -8  # queda maior que -8% ativa alerta forte
-
-skins = [
-    "AK-47 | Slate (Field-Tested)",
-    "AK-47 | Ice Coaled (Field-Tested)",
-    "M4A1-S | Night Terror (Field-Tested)",
-    "M4A4 | Magnesium (Field-Tested)",
-    "USP-S | Cortex (Field-Tested)",
-    "Glock-18 | Vogue (Field-Tested)"
-]
-
 
 # ============================================================
-# 🌐 BUSCAR DADOS DA STEAM
+# 📡 BUSCAR DADOS DA API
 # ============================================================
-def get_market_data(skin_name):
-    url = "https://steamcommunity.com/market/priceoverview/"
+
+def fetch_data(market_hash_name):
     params = {
-        "appid": APPID,
-        "currency": 7,
-        "market_hash_name": skin_name
+        "market_hash_name": market_hash_name,
+        "app_id": 730,
+        "currency": "BRL"
     }
 
-    response = requests.get(url, params=params)
-
-    if response.status_code == 200:
+    try:
+        response = requests.get(API_URL, params=params)
         data = response.json()
 
-        if data.get("success"):
-            price = None
-            volume = 0
+        if data and isinstance(data, list):
+            item = data[0]
+            return item["min_price"] / 100, item["volume"]
 
-            if "lowest_price" in data:
-                price_str = data["lowest_price"]
-                price = float(
-                    price_str.replace("R$", "")
-                    .replace(" ", "")
-                    .replace(",", ".")
-                )
+    except Exception as e:
+        print(f"Erro ao buscar dados: {e}")
 
-            if "volume" in data:
-                volume = int(
-                    data["volume"]
-                    .replace(",", "")
-                    .replace(".", "")
-                )
-
-            return price, volume
-
-    return None, 0
+    return None, None
 
 
 # ============================================================
-# 📊 CARREGAR HISTÓRICO
+# 💾 SALVAR HISTÓRICO
 # ============================================================
-def load_history():
-    history = {}
-    existing_rows = []
 
-    if not os.path.isfile(HISTORY_FILE):
-        return history, existing_rows
-
-    with open(HISTORY_FILE, mode="r", encoding="utf-8") as file:
-        reader = csv.DictReader(file)
-
-        for row in reader:
-            skin = row["skin"]
-            price = float(row["price"])
-            date = row["date"]
-
-            existing_rows.append((date, skin, price))
-
-            if skin not in history:
-                history[skin] = []
-
-            history[skin].append(price)
-
-    return history, existing_rows
-
-
-# ============================================================
-# 💾 SALVAR PREÇO (ANTI-DUPLICAÇÃO)
-# ============================================================
-def save_price(today, skin, price, existing_rows):
-    # Verifica se já existe registro da mesma skin no mesmo dia
-    for row_date, row_skin, _ in existing_rows:
-        if row_date == today and row_skin == skin:
-            return False  # Já registrado hoje
-
+def update_history(skin, price):
     file_exists = os.path.isfile(HISTORY_FILE)
 
-    with open(HISTORY_FILE, mode="a", newline="", encoding="utf-8") as file:
+    with open(HISTORY_FILE, "a", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
 
         if not file_exists:
             writer.writerow(["date", "skin", "price"])
 
-        writer.writerow([today, skin, price])
-
-    return True
+        writer.writerow([
+            datetime.now().strftime("%Y-%m-%d"),
+            skin,
+            price
+        ])
 
 
 # ============================================================
-# 🧠 CÁLCULO DE SCORE AVANÇADO
+# 📊 CARREGAR HISTÓRICO E ORGANIZAR
 # ============================================================
+
+def load_history():
+    if not os.path.exists(HISTORY_FILE):
+        return {}
+
+    df = pd.read_csv(HISTORY_FILE)
+
+    df["price"] = pd.to_numeric(df["price"], errors="coerce")
+    df = df.sort_values("date")
+
+    history = {}
+
+    for skin in df["skin"].unique():
+        skin_data = df[df["skin"] == skin]
+        history[skin] = skin_data["price"].tolist()
+
+    return history
+
+
+# ============================================================
+# 🧠 CALCULAR SCORE
+# ============================================================
+
 def calculate_score(skin, current_price, volume, history):
+
     score = 0
 
-    if skin in history and len(history[skin]) >= 2:
-        prices = history[skin]
+    if skin in history and len(history[skin]) >= 7:
+        last_7 = history[skin][-7:]
+        moving_avg_7 = sum(last_7) / len(last_7)
 
-        # --------- MÉDIA MÓVEL 7 DIAS ---------
-        if len(prices) >= 7:
-            last_7 = prices[-7:]
-            moving_avg_7 = sum(last_7) / len(last_7)
+        trend_percent = ((current_price - moving_avg_7) / moving_avg_7) * 100
+        score += trend_percent * 0.6
 
-            if moving_avg_7 > 0:
-                trend_percent = ((current_price - moving_avg_7) / moving_avg_7) * 100
-                score += trend_percent * 0.6
-
-        # --------- VARIAÇÃO DIÁRIA ---------
-        previous_price = prices[-1]
-
-        if previous_price > 0:
-            variation = ((current_price - previous_price) / previous_price) * 100
-            score += variation * 1.2
-
-            # --------- ALERTA DE QUEDA BRUSCA ---------
-            if variation <= CRASH_ALERT_PERCENT:
-                score += 5  # boost forte
-                print(f"⚠️ ALERTA DE QUEDA: {skin} caiu {round(variation,2)}%")
-
-    # --------- LIQUIDEZ ---------
-    if volume > 1000:
-        score += 3
-    elif volume > 300:
-        score += 2
-    elif volume > 100:
-        score += 1
-    else:
-        score -= 2
-
-    # --------- PREÇO ESTRATÉGICO ---------
-    if current_price < 15:
-        score += 2
+    # Volume influencia
+    score += (volume / 100) * 0.4
 
     return round(score, 2)
 
 
 # ============================================================
-# 🚦 GERAR SINAL
+# 📈 GERAR SINAL
 # ============================================================
+
 def generate_signal(score):
-    if score >= 8:
-        return "🚀 OPORTUNIDADE AGRESSIVA"
+    if score >= 15:
+        return "COMPRA AGRESSIVA"
     elif score >= 5:
-        return "🟢 COMPRA FORTE"
-    elif score >= 2:
-        return "🟡 OBSERVAR"
+        return "OBSERVAR"
     else:
-        return "🔴 EVITAR"
+        return "EVITAR"
 
 
 # ============================================================
-# 🚀 MAIN
+# 🌐 GERAR SITE HTML
 # ============================================================
+
+def generate_html(results):
+
+    html_content = f"""
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CS2 Skin Ranking</title>
+        <style>
+            body {{ font-family: Arial; background-color: #111; color: white; padding: 40px; }}
+            table {{ border-collapse: collapse; width: 100%; }}
+            th, td {{ padding: 12px; text-align: left; }}
+            th {{ background-color: #222; }}
+            tr:nth-child(even) {{ background-color: #1a1a1a; }}
+            .green {{ color: #00ff88; }}
+            .yellow {{ color: #ffcc00; }}
+            .red {{ color: #ff4444; }}
+        </style>
+    </head>
+    <body>
+        <h1>🔥 CS2 Skin Ranking</h1>
+        <p>Atualizado em: {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
+        <table border="1">
+            <tr>
+                <th>Skin</th>
+                <th>Preço</th>
+                <th>Volume</th>
+                <th>Score</th>
+                <th>Sinal</th>
+            </tr>
+    """
+
+    for skin, price, volume, score, signal in results:
+
+        if "AGRESSIVA" in signal:
+            color = "green"
+        elif "OBSERVAR" in signal:
+            color = "yellow"
+        else:
+            color = "red"
+
+        html_content += f"""
+            <tr>
+                <td>{skin}</td>
+                <td>R$ {price}</td>
+                <td>{volume}</td>
+                <td>{score}</td>
+                <td class="{color}">{signal}</td>
+            </tr>
+        """
+
+    html_content += """
+        </table>
+    </body>
+    </html>
+    """
+
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+
+# ============================================================
+# 🚀 FUNÇÃO PRINCIPAL
+# ============================================================
+
 def main():
-    print("Buscando preços...\n")
 
-    history, existing_rows = load_history()
-    today = datetime.now().strftime("%Y-%m-%d")
-
+    history = load_history()
     results = []
 
-    for skin in skins:
-        price, volume = get_market_data(skin)
+    for skin in SKINS.keys():
 
-        if price and MIN_PRICE <= price <= MAX_PRICE:
+        price, volume = fetch_data(skin)
 
-            saved = save_price(today, skin, price, existing_rows)
+        if price is None:
+            continue
 
-            # Atualiza histórico apenas se salvou
-            if saved:
-                if skin not in history:
-                    history[skin] = []
-                history[skin].append(price)
+        update_history(skin, price)
 
-            score = calculate_score(skin, price, volume, history)
-            signal = generate_signal(score)
+        score = calculate_score(skin, price, volume, history)
+        signal = generate_signal(score)
 
-            results.append((skin, price, volume, score, signal))
-
-    if not results:
-        print("Nenhuma skin encontrada na faixa R$5–40.")
-        return
+        results.append((skin, price, volume, score, signal))
 
     results.sort(key=lambda x: x[3], reverse=True)
 
-    print("RANKING INTELIGENTE:\n")
+    print("\n🔥 RANKING ATUAL:\n")
 
     for skin, price, volume, score, signal in results:
         print(f"{skin}")
@@ -227,10 +225,13 @@ def main():
         print(f"Sinal: {signal}")
         print("-" * 40)
 
+    # 🌐 Gera o site
+    generate_html(results)
+
 
 # ============================================================
-# ▶ EXECUÇÃO
+# ▶️ EXECUÇÃO
 # ============================================================
+
 if __name__ == "__main__":
-    print("BOT DE ANÁLISE CS2 AVANÇADO ATIVO\n")
     main()

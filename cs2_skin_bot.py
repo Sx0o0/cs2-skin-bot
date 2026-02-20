@@ -78,11 +78,20 @@ def load_history():
             history[skin].append(price)
 
     return history
-
-
+    
 def calculate_score(skin, current_price, volume, history):
     score = 0
 
+    if skin in history and len(history[skin]) >= 7:
+        last_7 = history[skin][-7:]
+        moving_avg_7 = sum(last_7) / len(last_7)
+
+        if moving_avg_7 > 0:
+            trend_percent = ((current_price - moving_avg_7) / moving_avg_7) * 100
+            score += trend_percent * 0.6
+
+    return score
+    
     if skin in history and len(history[skin]) >= 2:
         prices = history[skin]
         previous_price = prices[-1]

@@ -1,5 +1,5 @@
 # ============================================================
-# 🔥 BOT DE ANÁLISE CS2 - VERSÃO ORGANIZADA
+# 🔥 BOT DE ANÁLISE CS2 - VERSÃO EVOLUÍDA
 # ============================================================
 
 # =========================
@@ -18,6 +18,8 @@ APPID = 730
 MIN_PRICE = 5
 MAX_PRICE = 40
 HISTORY_FILE = "skin_history.csv"
+
+CRASH_ALERT_PERCENT = -8  # queda maior que -8% ativa alerta forte
 
 skins = [
     "AK-47 | Slate (Field-Tested)",
@@ -70,9 +72,42 @@ def get_market_data(skin_name):
 
 
 # ============================================================
-# 💾 SALVAR PREÇO NO CSV
+# 📊 CARREGAR HISTÓRICO
 # ============================================================
-def save_price(date, skin, price):
+def load_history():
+    history = {}
+    existing_rows = []
+
+    if not os.path.isfile(HISTORY_FILE):
+        return history, existing_rows
+
+    with open(HISTORY_FILE, mode="r", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            skin = row["skin"]
+            price = float(row["price"])
+            date = row["date"]
+
+            existing_rows.append((date, skin, price))
+
+            if skin not in history:
+                history[skin] = []
+
+            history[skin].append(price)
+
+    return history, existing_rows
+
+
+# ============================================================
+# 💾 SALVAR PREÇO (ANTI-DUPLICAÇÃO)
+# ============================================================
+def save_price(today, skin, price, existing_rows):
+    # Verifica se já existe registro da mesma skin no mesmo dia
+    for row_date, row_skin, _ in existing_rows:
+        if row_date == today and row_skin == skin:
+            return False  # Já registrado hoje
+
     file_exists = os.path.isfile(HISTORY_FILE)
 
     with open(HISTORY_FILE, mode="a", newline="", encoding="utf-8") as file:
@@ -81,68 +116,52 @@ def save_price(date, skin, price):
         if not file_exists:
             writer.writerow(["date", "skin", "price"])
 
-        writer.writerow([date, skin, price])
+        writer.writerow([today, skin, price])
+
+    return True
 
 
 # ============================================================
-# 📊 CARREGAR HISTÓRICO
-# ============================================================
-def load_history():
-    history = {}
-
-    if not os.path.isfile(HISTORY_FILE):
-        return history
-
-    with open(HISTORY_FILE, mode="r", encoding="utf-8") as file:
-        reader = csv.DictReader(file)
-
-        for row in reader:
-            skin = row["skin"]
-            price = float(row["price"])
-
-            if skin not in history:
-                history[skin] = []
-
-            history[skin].append(price)
-
-    return history
-
-
-# ============================================================
-# 🧠 CÁLCULO DE SCORE INTELIGENTE
+# 🧠 CÁLCULO DE SCORE AVANÇADO
 # ============================================================
 def calculate_score(skin, current_price, volume, history):
     score = 0
 
-    # ---------- TENDÊNCIA ----------
-    if skin in history and len(history[skin]) >= 3:
+    if skin in history and len(history[skin]) >= 2:
         prices = history[skin]
 
-        # Média móvel de 3 dias (temporário até ter 7 dias reais)
-        last_prices = prices[-3:]
-        moving_avg = sum(last_prices) / len(last_prices)
+        # --------- MÉDIA MÓVEL 7 DIAS ---------
+        if len(prices) >= 7:
+            last_7 = prices[-7:]
+            moving_avg_7 = sum(last_7) / len(last_7)
 
-        if moving_avg > 0:
-            trend_percent = ((current_price - moving_avg) / moving_avg) * 100
-            score += trend_percent * 0.6
+            if moving_avg_7 > 0:
+                trend_percent = ((current_price - moving_avg_7) / moving_avg_7) * 100
+                score += trend_percent * 0.6
 
-        # Variação em relação ao último preço
-        if len(prices) >= 2:
-            previous_price = prices[-1]
+        # --------- VARIAÇÃO DIÁRIA ---------
+        previous_price = prices[-1]
+
+        if previous_price > 0:
             variation = ((current_price - previous_price) / previous_price) * 100
-            score += variation * 1.0
+            score += variation * 1.2
 
-    # ---------- LIQUIDEZ ----------
-    if volume > 500:
+            # --------- ALERTA DE QUEDA BRUSCA ---------
+            if variation <= CRASH_ALERT_PERCENT:
+                score += 5  # boost forte
+                print(f"⚠️ ALERTA DE QUEDA: {skin} caiu {round(variation,2)}%")
+
+    # --------- LIQUIDEZ ---------
+    if volume > 1000:
         score += 3
-    elif volume > 200:
+    elif volume > 300:
         score += 2
-    elif volume > 50:
+    elif volume > 100:
         score += 1
     else:
         score -= 2
 
-    # ---------- PREÇO ESTRATÉGICO ----------
+    # --------- PREÇO ESTRATÉGICO ---------
     if current_price < 15:
         score += 2
 
@@ -150,10 +169,12 @@ def calculate_score(skin, current_price, volume, history):
 
 
 # ============================================================
-# 🚦 GERAR SINAL DE COMPRA
+# 🚦 GERAR SINAL
 # ============================================================
 def generate_signal(score):
-    if score >= 6:
+    if score >= 8:
+        return "🚀 OPORTUNIDADE AGRESSIVA"
+    elif score >= 5:
         return "🟢 COMPRA FORTE"
     elif score >= 2:
         return "🟡 OBSERVAR"
@@ -162,12 +183,12 @@ def generate_signal(score):
 
 
 # ============================================================
-# 🚀 FUNÇÃO PRINCIPAL
+# 🚀 MAIN
 # ============================================================
 def main():
     print("Buscando preços...\n")
 
-    history = load_history()
+    history, existing_rows = load_history()
     today = datetime.now().strftime("%Y-%m-%d")
 
     results = []
@@ -177,16 +198,14 @@ def main():
 
         if price and MIN_PRICE <= price <= MAX_PRICE:
 
-            # Salva no CSV
-            save_price(today, skin, price)
+            saved = save_price(today, skin, price, existing_rows)
 
-            # Atualiza histórico em memória
-            if skin not in history:
-                history[skin] = []
+            # Atualiza histórico apenas se salvou
+            if saved:
+                if skin not in history:
+                    history[skin] = []
+                history[skin].append(price)
 
-            history[skin].append(price)
-
-            # Calcula score
             score = calculate_score(skin, price, volume, history)
             signal = generate_signal(score)
 
@@ -196,7 +215,6 @@ def main():
         print("Nenhuma skin encontrada na faixa R$5–40.")
         return
 
-    # Ordena pelo maior score
     results.sort(key=lambda x: x[3], reverse=True)
 
     print("RANKING INTELIGENTE:\n")
@@ -214,5 +232,5 @@ def main():
 # ▶ EXECUÇÃO
 # ============================================================
 if __name__ == "__main__":
-    print("BOT DE ANÁLISE CS2 ATIVO\n")
+    print("BOT DE ANÁLISE CS2 AVANÇADO ATIVO\n")
     main()

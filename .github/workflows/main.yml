@@ -1,3 +1,33 @@
+name: CS2 Skin Bot Avançado
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests pandas matplotlib
+
+      - name: Run CS2 Skin Bot
+        run: python cs2_skin_bot.py
+
       - name: Generate Ranking & Graph
         run: |
           python - <<EOF
@@ -6,14 +36,22 @@ import matplotlib.pyplot as plt
 
 try:
     df = pd.read_csv('skin_history.csv')
-except FileNotFoundError:
+except:
     df = pd.DataFrame(columns=['Skin','Preco','Volume','Score'])
 
-if not df.empty:
+if not df.empty and 'Score' in df.columns:
     df_sorted = df.sort_values('Score', ascending=False)
     plt.figure(figsize=(10,6))
-    plt.barh(df_sorted['Skin'], df_sorted['Score'], color='green')
+    plt.barh(df_sorted['Skin'], df_sorted['Score'])
     plt.xlabel('Score')
     plt.title('Ranking de Valorização CS2')
     plt.savefig('ranking.png')
 EOF
+
+      - name: Commit updated files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Atualiza ranking e histórico" || echo "Nada para commit"
+          git push

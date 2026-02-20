@@ -22,31 +22,26 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install requests pandas matplotlib
+        run: pip install requests pandas matplotlib
 
       - name: Run CS2 Skin Bot
         run: python cs2_skin_bot.py
 
-      - name: Generate Ranking & Graph
+      - name: Create ranking script
         run: |
-          python - <<EOF
-import pandas as pd
-import matplotlib.pyplot as plt
+          echo "import pandas as pd" > generate_ranking.py
+          echo "import matplotlib.pyplot as plt" >> generate_ranking.py
+          echo "df = pd.read_csv('skin_history.csv')" >> generate_ranking.py
+          echo "if not df.empty and 'Score' in df.columns:" >> generate_ranking.py
+          echo "    df_sorted = df.sort_values('Score', ascending=False)" >> generate_ranking.py
+          echo "    plt.figure(figsize=(10,6))" >> generate_ranking.py
+          echo "    plt.barh(df_sorted['Skin'], df_sorted['Score'])" >> generate_ranking.py
+          echo "    plt.xlabel('Score')" >> generate_ranking.py
+          echo "    plt.title('Ranking de Valorização CS2')" >> generate_ranking.py
+          echo "    plt.savefig('ranking.png')" >> generate_ranking.py
 
-try:
-    df = pd.read_csv('skin_history.csv')
-except:
-    df = pd.DataFrame(columns=['Skin','Preco','Volume','Score'])
-
-if not df.empty and 'Score' in df.columns:
-    df_sorted = df.sort_values('Score', ascending=False)
-    plt.figure(figsize=(10,6))
-    plt.barh(df_sorted['Skin'], df_sorted['Score'])
-    plt.xlabel('Score')
-    plt.title('Ranking de Valorização CS2')
-    plt.savefig('ranking.png')
-EOF
+      - name: Generate Ranking & Graph
+        run: python generate_ranking.py
 
       - name: Commit updated files
         run: |

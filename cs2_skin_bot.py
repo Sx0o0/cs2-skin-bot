@@ -1,17 +1,9 @@
-# ============================================================
-# 📦 IMPORTS
-# ============================================================
-
 import requests
 import csv
 import os
 import pandas as pd
 from datetime import datetime
 
-
-# ============================================================
-# 🎯 CONFIGURAÇÃO DAS SKINS
-# ============================================================
 
 SKINS = {
     "AK-47 | Slate (Field-Tested)",
@@ -21,22 +13,18 @@ SKINS = {
     "M4A1-S | Night Terror (Field-Tested)"
 }
 
-API_URL = "https://api.skinport.com/v1/items"
+API_URL = "https://api.skinport.com/v1/prices"
 HISTORY_FILE = "skin_history.csv"
 
 MIN_PRICE = 1
 MAX_PRICE = 1000
 
 
-# ============================================================
-# 📡 BUSCAR TODOS OS DADOS DA API
-# ============================================================
+def fetch_prices():
 
-def fetch_all_data():
     params = {
         "app_id": 730,
-        "currency": "BRL",
-        "tradable": 1
+        "currency": "BRL"
     }
 
     try:
@@ -47,16 +35,13 @@ def fetch_all_data():
             return data
 
     except Exception as e:
-        print(f"Erro na API: {e}")
+        print("Erro API:", e)
 
     return []
 
 
-# ============================================================
-# 💾 SALVAR HISTÓRICO
-# ============================================================
-
 def update_history(skin, price):
+
     file_exists = os.path.isfile(HISTORY_FILE)
 
     with open(HISTORY_FILE, "a", newline="", encoding="utf-8") as file:
@@ -72,16 +57,12 @@ def update_history(skin, price):
         ])
 
 
-# ============================================================
-# 📊 CARREGAR HISTÓRICO
-# ============================================================
-
 def load_history():
+
     if not os.path.exists(HISTORY_FILE):
         return {}
 
     df = pd.read_csv(HISTORY_FILE)
-
     df["price"] = pd.to_numeric(df["price"], errors="coerce")
     df = df.sort_values("date")
 
@@ -94,156 +75,105 @@ def load_history():
     return history
 
 
-# ============================================================
-# 🧠 CALCULAR SCORE
-# ============================================================
-
-def calculate_score(skin, current_price, volume, history):
+def calculate_score(skin, current_price, history):
 
     score = 0
 
     if skin in history and len(history[skin]) >= 7:
         last_7 = history[skin][-7:]
-        moving_avg_7 = sum(last_7) / len(last_7)
+        moving_avg = sum(last_7) / len(last_7)
 
-        trend_percent = ((current_price - moving_avg_7) / moving_avg_7) * 100
-        score += trend_percent * 0.6
-
-    if volume:
-        score += (volume / 100) * 0.4
+        trend = ((current_price - moving_avg) / moving_avg) * 100
+        score += trend
 
     return round(score, 2)
 
 
-# ============================================================
-# 📈 GERAR SINAL
-# ============================================================
-
-def generate_signal(score):
-    if score >= 15:
-        return "COMPRA AGRESSIVA"
-    elif score >= 5:
-        return "OBSERVAR"
-    else:
-        return "EVITAR"
-
-
-# ============================================================
-# 🌐 GERAR HTML
-# ============================================================
-
 def generate_html(results):
 
-    html_content = f"""
+    html = f"""
     <html>
     <head>
         <meta charset="UTF-8">
         <title>CS2 Skin Ranking</title>
         <style>
-            body {{ font-family: Arial; background-color: #111; color: white; padding: 40px; }}
+            body {{ font-family: Arial; background: #111; color: white; padding: 40px; }}
             table {{ border-collapse: collapse; width: 100%; }}
-            th, td {{ padding: 12px; text-align: left; }}
-            th {{ background-color: #222; }}
-            tr:nth-child(even) {{ background-color: #1a1a1a; }}
-            .green {{ color: #00ff88; }}
-            .yellow {{ color: #ffcc00; }}
-            .red {{ color: #ff4444; }}
+            th, td {{ padding: 10px; }}
+            th {{ background: #222; }}
+            tr:nth-child(even) {{ background: #1a1a1a; }}
         </style>
     </head>
     <body>
         <h1>🔥 CS2 Skin Ranking</h1>
-        <p>Atualizado em: {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
+        <p>Atualizado: {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
         <table border="1">
             <tr>
                 <th>Skin</th>
                 <th>Preço</th>
-                <th>Volume</th>
                 <th>Score</th>
-                <th>Sinal</th>
             </tr>
     """
 
-    for skin, price, volume, score, signal in results:
-
-        color = "red"
-        if "AGRESSIVA" in signal:
-            color = "green"
-        elif "OBSERVAR" in signal:
-            color = "yellow"
-
-        html_content += f"""
-            <tr>
-                <td>{skin}</td>
-                <td>R$ {price}</td>
-                <td>{volume}</td>
-                <td>{score}</td>
-                <td class="{color}">{signal}</td>
-            </tr>
+    for skin, price, score in results:
+        html += f"""
+        <tr>
+            <td>{skin}</td>
+            <td>R$ {price}</td>
+            <td>{score}</td>
+        </tr>
         """
 
-    html_content += """
+    html += """
         </table>
     </body>
     </html>
     """
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(html_content)
+        f.write(html)
 
-
-# ============================================================
-# 🚀 MAIN
-# ============================================================
 
 def main():
 
     history = load_history()
     results = []
 
-    all_items = fetch_all_data()
+    data = fetch_prices()
 
-    if not all_items:
-        print("⚠️ API não retornou dados.")
+    if not data:
+        print("API vazia")
         return
 
-    for item in all_items:
+    for item in data:
 
         name = item.get("market_hash_name")
 
         if name not in SKINS:
             continue
 
-        price = item.get("min_price")
-        volume = item.get("volume")
+        price = item.get("avg_price")
 
         if not price:
             continue
 
-        price = price / 100
+        price = float(price)
 
         if not (MIN_PRICE <= price <= MAX_PRICE):
             continue
 
         update_history(name, price)
 
-        score = calculate_score(name, price, volume, history)
-        signal = generate_signal(score)
+        score = calculate_score(name, price, history)
 
-        results.append((name, price, volume, score, signal))
+        results.append((name, price, score))
 
-    results.sort(key=lambda x: x[3], reverse=True)
+    results.sort(key=lambda x: x[2], reverse=True)
 
-    print("\n🔥 RANKING ATUAL:\n")
-
-    for skin, price, volume, score, signal in results:
-        print(f"{skin} | R$ {price} | Score: {score} | {signal}")
+    print("Ranking atualizado")
 
     generate_html(results)
 
-
-# ============================================================
-# ▶️ EXECUÇÃO
-# ============================================================
 
 if __name__ == "__main__":
     main()

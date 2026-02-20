@@ -24,6 +24,10 @@ SKINS = {
 API_URL = "https://api.skinport.com/v1/items"
 HISTORY_FILE = "skin_history.csv"
 
+# 🔥 FILTRO DE PREÇO
+MIN_PRICE = 1
+MAX_PRICE = 1000
+
 
 # ============================================================
 # 📡 BUSCAR DADOS DA API
@@ -108,7 +112,8 @@ def calculate_score(skin, current_price, volume, history):
         score += trend_percent * 0.6
 
     # Volume influencia
-    score += (volume / 100) * 0.4
+    if volume is not None:
+        score += (volume / 100) * 0.4
 
     return round(score, 2)
 
@@ -206,6 +211,10 @@ def main():
         if price is None:
             continue
 
+        # 🔥 FILTRO DE PREÇO
+        if not (MIN_PRICE <= price <= MAX_PRICE):
+            continue
+
         update_history(skin, price)
 
         score = calculate_score(skin, price, volume, history)
@@ -225,7 +234,6 @@ def main():
         print(f"Sinal: {signal}")
         print("-" * 40)
 
-    # 🌐 Gera o site
     generate_html(results)
 
 

@@ -1,12 +1,9 @@
-name: CS2 Skin Bot Avançado
+name: run-bot
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 12 * * *'
-
-permissions:
-  contents: write
+    - cron: '0 */6 * * *'  # roda a cada 6 horas
+  workflow_dispatch:
 
 jobs:
   run-bot:
@@ -16,21 +13,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install requests pandas matplotlib
-
-      - name: Run CS2 Skin Bot
-        run: python cs2_skin_bot.py
-
-      - name: Commit updated files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          pip install requests pandas
+
+      - name: Run bot
+        run: |
+          python cs2_skin_bot.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "actions-user"
+          git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Atualiza histórico" || echo "Nada para commit"
+          git commit -m "Atualiza histórico" || echo "Sem mudanças"
           git push

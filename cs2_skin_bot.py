@@ -1,8 +1,19 @@
+# ============================================================
+# 🔥 BOT DE ANÁLISE CS2 - VERSÃO ORGANIZADA
+# ============================================================
+
+# =========================
+# 📦 IMPORTS
+# =========================
 import requests
 import csv
 import os
 from datetime import datetime
 
+
+# =========================
+# ⚙ CONFIGURAÇÕES
+# =========================
 APPID = 730
 MIN_PRICE = 5
 MAX_PRICE = 40
@@ -18,6 +29,9 @@ skins = [
 ]
 
 
+# ============================================================
+# 🌐 BUSCAR DADOS DA STEAM
+# ============================================================
 def get_market_data(skin_name):
     url = "https://steamcommunity.com/market/priceoverview/"
     params = {
@@ -30,6 +44,7 @@ def get_market_data(skin_name):
 
     if response.status_code == 200:
         data = response.json()
+
         if data.get("success"):
             price = None
             volume = 0
@@ -43,23 +58,35 @@ def get_market_data(skin_name):
                 )
 
             if "volume" in data:
-                volume = int(data["volume"].replace(",", "").replace(".", ""))
+                volume = int(
+                    data["volume"]
+                    .replace(",", "")
+                    .replace(".", "")
+                )
 
             return price, volume
 
     return None, 0
 
 
+# ============================================================
+# 💾 SALVAR PREÇO NO CSV
+# ============================================================
 def save_price(date, skin, price):
     file_exists = os.path.isfile(HISTORY_FILE)
 
     with open(HISTORY_FILE, mode="a", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
+
         if not file_exists:
             writer.writerow(["date", "skin", "price"])
+
         writer.writerow([date, skin, price])
 
 
+# ============================================================
+# 📊 CARREGAR HISTÓRICO
+# ============================================================
 def load_history():
     history = {}
 
@@ -68,6 +95,7 @@ def load_history():
 
     with open(HISTORY_FILE, mode="r", encoding="utf-8") as file:
         reader = csv.DictReader(file)
+
         for row in reader:
             skin = row["skin"]
             price = float(row["price"])
@@ -78,38 +106,33 @@ def load_history():
             history[skin].append(price)
 
     return history
-    
+
+
+# ============================================================
+# 🧠 CÁLCULO DE SCORE INTELIGENTE
+# ============================================================
 def calculate_score(skin, current_price, volume, history):
     score = 0
 
-    if skin in history and len(history[skin]) >= 7:
-        last_7 = history[skin][-7:]
-        moving_avg_7 = sum(last_7) / len(last_7)
+    # ---------- TENDÊNCIA ----------
+    if skin in history and len(history[skin]) >= 3:
+        prices = history[skin]
 
-        if moving_avg_7 > 0:
-            trend_percent = ((current_price - moving_avg_7) / moving_avg_7) * 100
+        # Média móvel de 3 dias (temporário até ter 7 dias reais)
+        last_prices = prices[-3:]
+        moving_avg = sum(last_prices) / len(last_prices)
+
+        if moving_avg > 0:
+            trend_percent = ((current_price - moving_avg) / moving_avg) * 100
             score += trend_percent * 0.6
 
-    return score
-    
-    if skin in history and len(history[skin]) >= 2:
-        prices = history[skin]
-        previous_price = prices[-1]
+        # Variação em relação ao último preço
+        if len(prices) >= 2:
+            previous_price = prices[-1]
+            variation = ((current_price - previous_price) / previous_price) * 100
+            score += variation * 1.0
 
-        variation = ((current_price - previous_price) / previous_price) * 100
-        score += variation * 1.2
-
-        if len(prices) >= 7:
-            last_week = prices[-7:]
-            weekly_trend = ((last_week[-1] - last_week[0]) / last_week[0]) * 100
-            score += weekly_trend * 0.5
-
-        if len(prices) >= 3:
-            last_three = prices[-3:]
-            short_trend = ((last_three[-1] - last_three[0]) / last_three[0]) * 100
-            score += short_trend * 0.8
-
-    # Liquidez
+    # ---------- LIQUIDEZ ----------
     if volume > 500:
         score += 3
     elif volume > 200:
@@ -119,13 +142,16 @@ def calculate_score(skin, current_price, volume, history):
     else:
         score -= 2
 
-    # Preço baixo estratégico
+    # ---------- PREÇO ESTRATÉGICO ----------
     if current_price < 15:
         score += 2
 
     return round(score, 2)
 
 
+# ============================================================
+# 🚦 GERAR SINAL DE COMPRA
+# ============================================================
 def generate_signal(score):
     if score >= 6:
         return "🟢 COMPRA FORTE"
@@ -135,26 +161,42 @@ def generate_signal(score):
         return "🔴 EVITAR"
 
 
+# ============================================================
+# 🚀 FUNÇÃO PRINCIPAL
+# ============================================================
 def main():
     print("Buscando preços...\n")
 
     history = load_history()
     today = datetime.now().strftime("%Y-%m-%d")
+
     results = []
 
     for skin in skins:
         price, volume = get_market_data(skin)
 
         if price and MIN_PRICE <= price <= MAX_PRICE:
+
+            # Salva no CSV
             save_price(today, skin, price)
+
+            # Atualiza histórico em memória
+            if skin not in history:
+                history[skin] = []
+
+            history[skin].append(price)
+
+            # Calcula score
             score = calculate_score(skin, price, volume, history)
             signal = generate_signal(score)
+
             results.append((skin, price, volume, score, signal))
 
     if not results:
         print("Nenhuma skin encontrada na faixa R$5–40.")
         return
 
+    # Ordena pelo maior score
     results.sort(key=lambda x: x[3], reverse=True)
 
     print("RANKING INTELIGENTE:\n")
@@ -168,6 +210,9 @@ def main():
         print("-" * 40)
 
 
+# ============================================================
+# ▶ EXECUÇÃO
+# ============================================================
 if __name__ == "__main__":
     print("BOT DE ANÁLISE CS2 ATIVO\n")
     main()

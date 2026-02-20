@@ -14,44 +14,42 @@ from datetime import datetime
 # ============================================================
 
 SKINS = {
-    "AK-47 | Slate (Field-Tested)": "730/2/1031",
-    "AK-47 | Ice Coaled (Field-Tested)": "730/2/1143",
-    "USP-S | Cortex (Field-Tested)": "730/2/846",
-    "Glock-18 | Vogue (Field-Tested)": "730/2/930",
-    "M4A1-S | Night Terror (Field-Tested)": "730/2/1144"
+    "AK-47 | Slate (Field-Tested)",
+    "AK-47 | Ice Coaled (Field-Tested)",
+    "USP-S | Cortex (Field-Tested)",
+    "Glock-18 | Vogue (Field-Tested)",
+    "M4A1-S | Night Terror (Field-Tested)"
 }
 
 API_URL = "https://api.skinport.com/v1/items"
 HISTORY_FILE = "skin_history.csv"
 
-# 🔥 FILTRO DE PREÇO
 MIN_PRICE = 1
 MAX_PRICE = 1000
 
 
 # ============================================================
-# 📡 BUSCAR DADOS DA API
+# 📡 BUSCAR TODOS OS DADOS DA API
 # ============================================================
 
-def fetch_data(market_hash_name):
+def fetch_all_data():
     params = {
-        "market_hash_name": market_hash_name,
         "app_id": 730,
-        "currency": "BRL"
+        "currency": "BRL",
+        "tradable": 1
     }
 
     try:
         response = requests.get(API_URL, params=params)
         data = response.json()
 
-        if data and isinstance(data, list):
-            item = data[0]
-            return item["min_price"] / 100, item["volume"]
+        if isinstance(data, list):
+            return data
 
     except Exception as e:
-        print(f"Erro ao buscar dados: {e}")
+        print(f"Erro na API: {e}")
 
-    return None, None
+    return []
 
 
 # ============================================================
@@ -75,7 +73,7 @@ def update_history(skin, price):
 
 
 # ============================================================
-# 📊 CARREGAR HISTÓRICO E ORGANIZAR
+# 📊 CARREGAR HISTÓRICO
 # ============================================================
 
 def load_history():
@@ -111,8 +109,7 @@ def calculate_score(skin, current_price, volume, history):
         trend_percent = ((current_price - moving_avg_7) / moving_avg_7) * 100
         score += trend_percent * 0.6
 
-    # Volume influencia
-    if volume is not None:
+    if volume:
         score += (volume / 100) * 0.4
 
     return round(score, 2)
@@ -132,7 +129,7 @@ def generate_signal(score):
 
 
 # ============================================================
-# 🌐 GERAR SITE HTML
+# 🌐 GERAR HTML
 # ============================================================
 
 def generate_html(results):
@@ -168,12 +165,11 @@ def generate_html(results):
 
     for skin, price, volume, score, signal in results:
 
+        color = "red"
         if "AGRESSIVA" in signal:
             color = "green"
         elif "OBSERVAR" in signal:
             color = "yellow"
-        else:
-            color = "red"
 
         html_content += f"""
             <tr>
@@ -196,7 +192,7 @@ def generate_html(results):
 
 
 # ============================================================
-# 🚀 FUNÇÃO PRINCIPAL
+# 🚀 MAIN
 # ============================================================
 
 def main():
@@ -204,35 +200,43 @@ def main():
     history = load_history()
     results = []
 
-    for skin in SKINS.keys():
+    all_items = fetch_all_data()
 
-        price, volume = fetch_data(skin)
+    if not all_items:
+        print("⚠️ API não retornou dados.")
+        return
 
-        if price is None:
+    for item in all_items:
+
+        name = item.get("market_hash_name")
+
+        if name not in SKINS:
             continue
 
-        # 🔥 FILTRO DE PREÇO
+        price = item.get("min_price")
+        volume = item.get("volume")
+
+        if not price:
+            continue
+
+        price = price / 100
+
         if not (MIN_PRICE <= price <= MAX_PRICE):
             continue
 
-        update_history(skin, price)
+        update_history(name, price)
 
-        score = calculate_score(skin, price, volume, history)
+        score = calculate_score(name, price, volume, history)
         signal = generate_signal(score)
 
-        results.append((skin, price, volume, score, signal))
+        results.append((name, price, volume, score, signal))
 
     results.sort(key=lambda x: x[3], reverse=True)
 
     print("\n🔥 RANKING ATUAL:\n")
 
     for skin, price, volume, score, signal in results:
-        print(f"{skin}")
-        print(f"Preço: R$ {price}")
-        print(f"Volume: {volume}")
-        print(f"Score: {score}")
-        print(f"Sinal: {signal}")
-        print("-" * 40)
+        print(f"{skin} | R$ {price} | Score: {score} | {signal}")
 
     generate_html(results)
 

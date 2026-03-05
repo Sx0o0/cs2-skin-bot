@@ -24,11 +24,13 @@ def fetch_prices():
 
     params = {
         "app_id": 730,
-        "currency": "BRL"
+        "currency": "BRL",
+        "tradable": 1
     }
 
     try:
         response = requests.get(API_URL, params=params)
+        response.raise_for_status()
         data = response.json()
 
         if isinstance(data, list):
@@ -152,7 +154,7 @@ def main():
         if name not in SKINS:
             continue
 
-        price = item.get("avg_price")
+        price = item.get("price")
 
         if not price:
             continue

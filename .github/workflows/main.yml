@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests
+          pip install requests brotli
 
       - name: Run bot
         run: |
@@ -33,6 +33,6 @@ jobs:
         run: |
           git config --global user.name "actions-user"
           git config --global user.email "actions@github.com"
-          git add index.html skin_history.csv image_cache.csv || true
+          git add index.html skin_history.csv || true
           git commit -m "Update CS2 Skin Radar" || echo "Sem mudanças"
           git push

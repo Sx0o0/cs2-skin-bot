@@ -2,8 +2,11 @@ name: run-bot
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # roda a cada 6 horas
+    - cron: '0 */6 * * *'  # a cada 6 horas
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   run-bot:
@@ -30,6 +33,6 @@ jobs:
         run: |
           git config --global user.name "actions-user"
           git config --global user.email "actions@github.com"
-          git add .
-          git commit -m "Atualiza histórico" || echo "Sem mudanças"
+          git add index.html skin_history.csv || true
+          git commit -m "Atualiza ranking de skins" || echo "Sem mudanças"
           git push

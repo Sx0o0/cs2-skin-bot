@@ -1,11 +1,6158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>CS2 Skin Bot</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CS2 Skin Bot - Ranking</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background:#111;
+    color:#fff;
+    padding:24px;
+  }
+  h1 { margin: 0 0 6px 0; }
+  .muted { color:#aaa; margin: 0 0 18px 0; }
+  .bar {
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin: 12px 0 16px 0;
+    align-items:center;
+  }
+  input {
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid #333;
+    background:#0c0c0c;
+    color:#fff;
+    outline:none;
+    min-width: 260px;
+  }
+  .chip {
+    padding:8px 10px;
+    border:1px solid #333;
+    border-radius:999px;
+    background:#0c0c0c;
+    color:#ddd;
+    font-size: 13px;
+  }
+  table {
+    width:100%;
+    border-collapse: collapse;
+    overflow:hidden;
+    border-radius: 14px;
+  }
+  th, td {
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid #222;
+    vertical-align: middle;
+  }
+  th {
+    background:#1b1b1b;
+    cursor:pointer;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  tr:nth-child(even) { background:#151515; }
+  tr:hover { background:#1f1f1f; }
+  .green { color:#00ff88; font-weight:700; }
+  .yellow { color:#ffcc00; font-weight:700; }
+  .red { color:#ff5555; font-weight:700; }
+  .small { font-size: 12px; color:#aaa; }
+</style>
 </head>
 <body>
-  <h1>CS2 Skin Bot</h1>
-  <p>O bot ainda não rodou.</p>
+
+<h1>🔥 CS2 Skin Ranking</h1>
+<p class="muted">Atualizado: 2026-03-05 12:40 • Fonte: Skinport sales/history • Apenas FT/MW/FN + mistura StatTrak™</p>
+
+<div class="bar">
+  <input id="q" placeholder="Buscar skin..." oninput="filterRows()"/>
+  <span class="chip">Ordene clicando nos títulos</span>
+  <span class="chip">% lucro = (média 30d - atual) / atual</span>
+</div>
+
+<table id="t">
+  <thead>
+    <tr>
+      <th onclick="sortTable(0)">Skin</th>
+      <th onclick="sortTable(1)">Preço atual</th>
+      <th onclick="sortTable(2)">Vol 30d</th>
+      <th onclick="sortTable(3)">Média 7d</th>
+      <th onclick="sortTable(4)">Média 30d</th>
+      <th onclick="sortTable(5)">Veloc.</th>
+      <th onclick="sortTable(6)">Lucro est.</th>
+      <th onclick="sortTable(7)">Segurar</th>
+      <th onclick="sortTable(8)">Sinal</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr>
+  <td>Glock-18 | Candy Apple (Factory New)</td>
+  <td>R$ 17.43</td>
+  <td>506</td>
+  <td>R$ 19.76</td>
+  <td>R$ 26.39</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Ocean Topo (Factory New)</td>
+  <td>R$ 4.48</td>
+  <td>488</td>
+  <td>R$ 6.14</td>
+  <td>R$ 6.38</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Souvenir MP5-SD | Lab Rats (Factory New)</td>
+  <td>R$ 2.76</td>
+  <td>480</td>
+  <td>R$ 3.99</td>
+  <td>R$ 3.80</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | High Beam (Factory New)</td>
+  <td>R$ 1.23</td>
+  <td>428</td>
+  <td>R$ 2.27</td>
+  <td>R$ 1.78</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MP9 | Buff Blue (Factory New)</td>
+  <td>R$ 1.17</td>
+  <td>401</td>
+  <td>R$ 2.09</td>
+  <td>R$ 2.58</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>8 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Heat Treated (Field-Tested)</td>
+  <td>R$ 22.46</td>
+  <td>358</td>
+  <td>R$ 64.13</td>
+  <td>R$ 65.24</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>13 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Candy Apple (Minimal Wear)</td>
+  <td>R$ 7.67</td>
+  <td>341</td>
+  <td>R$ 13.19</td>
+  <td>R$ 13.50</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>5 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Sky Blue (Factory New)</td>
+  <td>R$ 3.07</td>
+  <td>321</td>
+  <td>R$ 4.91</td>
+  <td>R$ 5.03</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MP7 | Anodized Navy (Factory New)</td>
+  <td>R$ 7.55</td>
+  <td>284</td>
+  <td>R$ 7.92</td>
+  <td>R$ 10.56</td>
+  <td>12.95%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>PP-Bizon | Cold Cell (Factory New)</td>
+  <td>R$ 1.04</td>
+  <td>282</td>
+  <td>R$ 1.53</td>
+  <td>R$ 1.53</td>
+  <td>12.61%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Nitro (Minimal Wear)</td>
+  <td>R$ 8.22</td>
+  <td>268</td>
+  <td>R$ 14.54</td>
+  <td>R$ 11.66</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Nitro (Field-Tested)</td>
+  <td>R$ 3.01</td>
+  <td>249</td>
+  <td>R$ 3.07</td>
+  <td>R$ 7.06</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>9 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>XM1014 | Gum Wall Camo (Factory New)</td>
+  <td>R$ 1.96</td>
+  <td>187</td>
+  <td>R$ 2.21</td>
+  <td>R$ 2.82</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Midnight Paintover (Factory New)</td>
+  <td>R$ 1.29</td>
+  <td>179</td>
+  <td>R$ 1.90</td>
+  <td>R$ 2.27</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>5 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AWP | Pit Viper (Field-Tested)</td>
+  <td>R$ 5.46</td>
+  <td>176</td>
+  <td>R$ 7.36</td>
+  <td>R$ 8.59</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Blue Ply (Minimal Wear)</td>
+  <td>R$ 3.87</td>
+  <td>155</td>
+  <td>R$ 5.09</td>
+  <td>R$ 5.71</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Safari Mesh (Minimal Wear)</td>
+  <td>R$ 1.17</td>
+  <td>153</td>
+  <td>R$ 1.41</td>
+  <td>R$ 2.58</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>8 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Tec-9 | Ice Cap (Factory New)</td>
+  <td>R$ 6.69</td>
+  <td>149</td>
+  <td>R$ 10.56</td>
+  <td>R$ 10.43</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Nova | Candy Apple (Factory New)</td>
+  <td>R$ 2.64</td>
+  <td>140</td>
+  <td>R$ 5.46</td>
+  <td>R$ 4.11</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Dual Berettas | Polished Malachite (Minimal Wear)</td>
+  <td>R$ 1.47</td>
+  <td>137</td>
+  <td>R$ 1.53</td>
+  <td>R$ 2.15</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Yeti Camo (Factory New)</td>
+  <td>R$ 23.87</td>
+  <td>128</td>
+  <td>R$ 24.61</td>
+  <td>R$ 32.46</td>
+  <td>8.90%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Elite Build (Minimal Wear)</td>
+  <td>R$ 58.06</td>
+  <td>79</td>
+  <td>R$ 72.66</td>
+  <td>R$ 79.29</td>
+  <td>15.00%/dia</td>
+  <td><b>35.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>P250 | Franklin (Minimal Wear)</td>
+  <td>R$ 12.83</td>
+  <td>170</td>
+  <td>R$ 15.04</td>
+  <td>R$ 17.00</td>
+  <td>15.00%/dia</td>
+  <td><b>32.50%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>P90 | Wash me (Factory New)</td>
+  <td>R$ 1.35</td>
+  <td>275</td>
+  <td>R$ 1.60</td>
+  <td>R$ 1.78</td>
+  <td>14.20%/dia</td>
+  <td><b>31.85%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>P250 | Vino Primo (Field-Tested)</td>
+  <td>R$ 6.87</td>
+  <td>160</td>
+  <td>R$ 7.98</td>
+  <td>R$ 8.96</td>
+  <td>14.72%/dia</td>
+  <td><b>30.42%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Heat Treated (Minimal Wear)</td>
+  <td>R$ 95.61</td>
+  <td>228</td>
+  <td>R$ 150.36</td>
+  <td>R$ 124.27</td>
+  <td>15.00%/dia</td>
+  <td><b>29.98%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Slate (Field-Tested)</td>
+  <td>R$ 73.40</td>
+  <td>160</td>
+  <td>R$ 95.92</td>
+  <td>R$ 94.88</td>
+  <td>7.70%/dia</td>
+  <td><b>29.26%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>P250 | Franklin (Factory New)</td>
+  <td>R$ 27.31</td>
+  <td>127</td>
+  <td>R$ 30.68</td>
+  <td>R$ 35.10</td>
+  <td>15.00%/dia</td>
+  <td><b>28.52%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Acid Fade (Factory New)</td>
+  <td>R$ 6.01</td>
+  <td>588</td>
+  <td>R$ 6.63</td>
+  <td>R$ 7.67</td>
+  <td>15.00%/dia</td>
+  <td><b>27.62%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ SSG 08 | Abyss (Minimal Wear)</td>
+  <td>R$ 17.67</td>
+  <td>121</td>
+  <td>R$ 30.07</td>
+  <td>R$ 22.40</td>
+  <td>15.00%/dia</td>
+  <td><b>26.77%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Candy Apple (Factory New)</td>
+  <td>R$ 3.50</td>
+  <td>285</td>
+  <td>R$ 4.11</td>
+  <td>R$ 4.42</td>
+  <td>15.00%/dia</td>
+  <td><b>26.29%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Urban Hazard (Factory New)</td>
+  <td>R$ 24.55</td>
+  <td>171</td>
+  <td>R$ 24.55</td>
+  <td>R$ 30.81</td>
+  <td>10.11%/dia</td>
+  <td><b>25.50%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>USP-S | Tropical Breeze (Factory New)</td>
+  <td>R$ 20.80</td>
+  <td>237</td>
+  <td>R$ 22.34</td>
+  <td>R$ 26.08</td>
+  <td>15.00%/dia</td>
+  <td><b>25.38%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>USP-S | Stainless (Minimal Wear)</td>
+  <td>R$ 71.00</td>
+  <td>131</td>
+  <td>R$ 81.38</td>
+  <td>R$ 88.92</td>
+  <td>15.00%/dia</td>
+  <td><b>25.24%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>USP-S | Bleeding Edge (Minimal Wear)</td>
+  <td>R$ 38.60</td>
+  <td>224</td>
+  <td>R$ 43.20</td>
+  <td>R$ 48.24</td>
+  <td>9.09%/dia</td>
+  <td><b>24.97%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Allure (Field-Tested)</td>
+  <td>R$ 2.27</td>
+  <td>132</td>
+  <td>R$ 2.95</td>
+  <td>R$ 2.82</td>
+  <td>8.62%/dia</td>
+  <td><b>24.23%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ MAC-10 | Light Box (Minimal Wear)</td>
+  <td>R$ 2.39</td>
+  <td>73</td>
+  <td>R$ 2.45</td>
+  <td>R$ 2.95</td>
+  <td>5.71%/dia</td>
+  <td><b>23.43%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Souvenir MP5-SD | Lab Rats (Field-Tested)</td>
+  <td>R$ 1.84</td>
+  <td>220</td>
+  <td>R$ 1.84</td>
+  <td>R$ 2.27</td>
+  <td>1.40%/dia</td>
+  <td><b>23.37%</b></td>
+  <td>17 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>USP-S | Check Engine (Factory New)</td>
+  <td>R$ 10.06</td>
+  <td>170</td>
+  <td>R$ 12.83</td>
+  <td>R$ 12.40</td>
+  <td>15.00%/dia</td>
+  <td><b>23.26%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Wintergreen (Minimal Wear)</td>
+  <td>R$ 23.57</td>
+  <td>316</td>
+  <td>R$ 27.43</td>
+  <td>R$ 29.03</td>
+  <td>15.00%/dia</td>
+  <td><b>23.17%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>★ Hydra Gloves | Case Hardened (Field-Tested)</td>
+  <td>R$ 396.02</td>
+  <td>144</td>
+  <td>R$ 508.02</td>
+  <td>R$ 485.80</td>
+  <td>10.52%/dia</td>
+  <td><b>22.67%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Nouveau Rouge (Minimal Wear)</td>
+  <td>R$ 341.09</td>
+  <td>135</td>
+  <td>R$ 402.34</td>
+  <td>R$ 418.42</td>
+  <td>12.00%/dia</td>
+  <td><b>22.67%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Green Line (Minimal Wear)</td>
+  <td>R$ 11.17</td>
+  <td>140</td>
+  <td>R$ 12.40</td>
+  <td>R$ 13.50</td>
+  <td>5.66%/dia</td>
+  <td><b>20.86%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>SG 553 | Anodized Navy (Factory New)</td>
+  <td>R$ 3.87</td>
+  <td>142</td>
+  <td>R$ 4.66</td>
+  <td>R$ 4.66</td>
+  <td>15.00%/dia</td>
+  <td><b>20.41%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MP7 | Fade (Field-Tested)</td>
+  <td>R$ 56.46</td>
+  <td>161</td>
+  <td>R$ 59.16</td>
+  <td>R$ 67.94</td>
+  <td>13.28%/dia</td>
+  <td><b>20.33%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AWP | Pit Viper (Minimal Wear)</td>
+  <td>R$ 8.53</td>
+  <td>207</td>
+  <td>R$ 10.80</td>
+  <td>R$ 10.25</td>
+  <td>15.00%/dia</td>
+  <td><b>20.16%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Blue Ply (Field-Tested)</td>
+  <td>R$ 6.63</td>
+  <td>85</td>
+  <td>R$ 7.79</td>
+  <td>R$ 7.92</td>
+  <td>15.00%/dia</td>
+  <td><b>19.46%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Moonrise (Field-Tested)</td>
+  <td>R$ 11.05</td>
+  <td>168</td>
+  <td>R$ 13.44</td>
+  <td>R$ 13.19</td>
+  <td>15.00%/dia</td>
+  <td><b>19.37%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Candy Apple (Field-Tested)</td>
+  <td>R$ 6.69</td>
+  <td>127</td>
+  <td>R$ 6.75</td>
+  <td>R$ 7.98</td>
+  <td>7.41%/dia</td>
+  <td><b>19.28%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MP7 | Smoking Kills (Field-Tested)</td>
+  <td>R$ 68.43</td>
+  <td>135</td>
+  <td>R$ 79.11</td>
+  <td>R$ 81.56</td>
+  <td>15.00%/dia</td>
+  <td><b>19.19%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Elite Build (Field-Tested)</td>
+  <td>R$ 13.87</td>
+  <td>239</td>
+  <td>R$ 13.69</td>
+  <td>R$ 16.51</td>
+  <td>13.95%/dia</td>
+  <td><b>19.03%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Wintergreen (Factory New)</td>
+  <td>R$ 55.23</td>
+  <td>208</td>
+  <td>R$ 61.43</td>
+  <td>R$ 65.48</td>
+  <td>15.00%/dia</td>
+  <td><b>18.56%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MP5-SD | Kitbash (Field-Tested)</td>
+  <td>R$ 2.33</td>
+  <td>182</td>
+  <td>R$ 2.88</td>
+  <td>R$ 2.76</td>
+  <td>5.16%/dia</td>
+  <td><b>18.45%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>USP-S | Check Engine (Minimal Wear)</td>
+  <td>R$ 5.65</td>
+  <td>137</td>
+  <td>R$ 6.14</td>
+  <td>R$ 6.69</td>
+  <td>9.87%/dia</td>
+  <td><b>18.41%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MP9 | Cobalt Paisley (Minimal Wear)</td>
+  <td>R$ 7.98</td>
+  <td>145</td>
+  <td>R$ 8.47</td>
+  <td>R$ 9.39</td>
+  <td>8.28%/dia</td>
+  <td><b>17.67%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Converter (Factory New)</td>
+  <td>R$ 13.93</td>
+  <td>233</td>
+  <td>R$ 15.40</td>
+  <td>R$ 16.32</td>
+  <td>15.00%/dia</td>
+  <td><b>17.16%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>★ Moto Gloves | Turtle (Field-Tested)</td>
+  <td>R$ 524.84</td>
+  <td>140</td>
+  <td>R$ 594.67</td>
+  <td>R$ 612.96</td>
+  <td>12.10%/dia</td>
+  <td><b>16.79%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Wintergreen (Field-Tested)</td>
+  <td>R$ 8.78</td>
+  <td>312</td>
+  <td>R$ 9.57</td>
+  <td>R$ 10.25</td>
+  <td>15.00%/dia</td>
+  <td><b>16.74%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Moonrise (Factory New)</td>
+  <td>R$ 38.11</td>
+  <td>94</td>
+  <td>R$ 39.46</td>
+  <td>R$ 44.37</td>
+  <td>3.24%/dia</td>
+  <td><b>16.43%</b></td>
+  <td>5 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AWP | Wildfire (Minimal Wear)</td>
+  <td>R$ 397.37</td>
+  <td>155</td>
+  <td>R$ 453.28</td>
+  <td>R$ 460.95</td>
+  <td>6.45%/dia</td>
+  <td><b>16.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Sheet Lightning (Minimal Wear)</td>
+  <td>R$ 39.71</td>
+  <td>148</td>
+  <td>R$ 43.27</td>
+  <td>R$ 46.03</td>
+  <td>15.00%/dia</td>
+  <td><b>15.92%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Yeti Camo (Field-Tested)</td>
+  <td>R$ 3.99</td>
+  <td>141</td>
+  <td>R$ 4.05</td>
+  <td>R$ 4.60</td>
+  <td>11.68%/dia</td>
+  <td><b>15.29%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Black Lotus (Factory New)</td>
+  <td>R$ 269.17</td>
+  <td>71</td>
+  <td>R$ 302.31</td>
+  <td>R$ 309.30</td>
+  <td>7.32%/dia</td>
+  <td><b>14.91%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>SCAR-20 | Poultrygeist (Factory New)</td>
+  <td>R$ 2.95</td>
+  <td>186</td>
+  <td>R$ 2.88</td>
+  <td>R$ 3.38</td>
+  <td>4.27%/dia</td>
+  <td><b>14.58%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Abyss (Minimal Wear)</td>
+  <td>R$ 5.09</td>
+  <td>215</td>
+  <td>R$ 5.52</td>
+  <td>R$ 5.83</td>
+  <td>9.99%/dia</td>
+  <td><b>14.54%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>USP-S | Bleeding Edge (Field-Tested)</td>
+  <td>R$ 19.27</td>
+  <td>192</td>
+  <td>R$ 20.93</td>
+  <td>R$ 22.03</td>
+  <td>15.00%/dia</td>
+  <td><b>14.32%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AWP | Green Energy (Minimal Wear)</td>
+  <td>R$ 218.66</td>
+  <td>151</td>
+  <td>R$ 221.91</td>
+  <td>R$ 249.28</td>
+  <td>7.41%/dia</td>
+  <td><b>14.00%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MP7 | Just Smile (Minimal Wear)</td>
+  <td>R$ 8.47</td>
+  <td>130</td>
+  <td>R$ 9.27</td>
+  <td>R$ 9.64</td>
+  <td>11.91%/dia</td>
+  <td><b>13.81%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Moonrise (Minimal Wear)</td>
+  <td>R$ 20.74</td>
+  <td>121</td>
+  <td>R$ 20.80</td>
+  <td>R$ 23.57</td>
+  <td>7.29%/dia</td>
+  <td><b>13.65%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Moonrise (Factory New)</td>
+  <td>R$ 20.31</td>
+  <td>159</td>
+  <td>R$ 22.09</td>
+  <td>R$ 23.08</td>
+  <td>15.00%/dia</td>
+  <td><b>13.64%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Mulberry (Factory New)</td>
+  <td>R$ 169.44</td>
+  <td>190</td>
+  <td>R$ 201.78</td>
+  <td>R$ 192.46</td>
+  <td>15.00%/dia</td>
+  <td><b>13.59%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Nuclear Garden (Minimal Wear)</td>
+  <td>R$ 25.59</td>
+  <td>188</td>
+  <td>R$ 26.39</td>
+  <td>R$ 29.03</td>
+  <td>4.95%/dia</td>
+  <td><b>13.44%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Nouveau Rouge (Field-Tested)</td>
+  <td>R$ 133.42</td>
+  <td>219</td>
+  <td>R$ 141.76</td>
+  <td>R$ 151.22</td>
+  <td>15.00%/dia</td>
+  <td><b>13.34%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Umbral Rabbit (Minimal Wear)</td>
+  <td>R$ 14.24</td>
+  <td>105</td>
+  <td>R$ 15.22</td>
+  <td>R$ 16.14</td>
+  <td>10.94%/dia</td>
+  <td><b>13.34%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Tec-9 | Red Quartz (Factory New)</td>
+  <td>R$ 3.68</td>
+  <td>166</td>
+  <td>R$ 3.38</td>
+  <td>R$ 4.17</td>
+  <td>15.00%/dia</td>
+  <td><b>13.32%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Mulberry (Minimal Wear)</td>
+  <td>R$ 91.56</td>
+  <td>332</td>
+  <td>R$ 93.53</td>
+  <td>R$ 103.65</td>
+  <td>8.48%/dia</td>
+  <td><b>13.20%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Signal (Minimal Wear)</td>
+  <td>R$ 6.14</td>
+  <td>131</td>
+  <td>R$ 6.20</td>
+  <td>R$ 6.93</td>
+  <td>3.25%/dia</td>
+  <td><b>12.87%</b></td>
+  <td>4 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Stratosphere (Field-Tested)</td>
+  <td>R$ 63.33</td>
+  <td>173</td>
+  <td>R$ 70.88</td>
+  <td>R$ 71.13</td>
+  <td>12.34%/dia</td>
+  <td><b>12.32%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Night Terror (Factory New)</td>
+  <td>R$ 16.32</td>
+  <td>208</td>
+  <td>R$ 17.24</td>
+  <td>R$ 18.29</td>
+  <td>15.00%/dia</td>
+  <td><b>12.07%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AWP | Acheron (Minimal Wear)</td>
+  <td>R$ 8.71</td>
+  <td>271</td>
+  <td>R$ 9.76</td>
+  <td>R$ 9.76</td>
+  <td>7.36%/dia</td>
+  <td><b>12.06%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Glitched Paint (Field-Tested)</td>
+  <td>R$ 23.01</td>
+  <td>188</td>
+  <td>R$ 23.63</td>
+  <td>R$ 25.78</td>
+  <td>11.50%/dia</td>
+  <td><b>12.04%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Evil Daimyo (Minimal Wear)</td>
+  <td>R$ 29.15</td>
+  <td>203</td>
+  <td>R$ 34.24</td>
+  <td>R$ 32.65</td>
+  <td>15.00%/dia</td>
+  <td><b>12.01%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>USP-S | Alpine Camo (Field-Tested)</td>
+  <td>R$ 3.74</td>
+  <td>912</td>
+  <td>R$ 4.17</td>
+  <td>R$ 4.17</td>
+  <td>15.00%/dia</td>
+  <td><b>11.50%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>P250 | Franklin (Field-Tested)</td>
+  <td>R$ 9.64</td>
+  <td>287</td>
+  <td>R$ 10.19</td>
+  <td>R$ 10.74</td>
+  <td>12.90%/dia</td>
+  <td><b>11.41%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>★ Specialist Gloves | Crimson Web (Field-Tested)</td>
+  <td>R$ 1008.43</td>
+  <td>234</td>
+  <td>R$ 1161.55</td>
+  <td>R$ 1118.34</td>
+  <td>15.00%/dia</td>
+  <td><b>10.90%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Tec-9 | Blue Blast (Factory New)</td>
+  <td>R$ 2.88</td>
+  <td>140</td>
+  <td>R$ 2.70</td>
+  <td>R$ 3.19</td>
+  <td>15.00%/dia</td>
+  <td><b>10.76%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>★ Sport Gloves | Omega (Field-Tested)</td>
+  <td>R$ 1629.92</td>
+  <td>186</td>
+  <td>R$ 1814.71</td>
+  <td>R$ 1801.45</td>
+  <td>15.00%/dia</td>
+  <td><b>10.52%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>★ Moto Gloves | Transport (Field-Tested)</td>
+  <td>R$ 278.62</td>
+  <td>174</td>
+  <td>R$ 299.55</td>
+  <td>R$ 307.89</td>
+  <td>5.36%/dia</td>
+  <td><b>10.51%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Souvenir MP5-SD | Lab Rats (Minimal Wear)</td>
+  <td>R$ 1.72</td>
+  <td>197</td>
+  <td>R$ 1.72</td>
+  <td>R$ 1.90</td>
+  <td>4.15%/dia</td>
+  <td><b>10.47%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Tec-9 | Red Quartz (Minimal Wear)</td>
+  <td>R$ 1.72</td>
+  <td>146</td>
+  <td>R$ 1.78</td>
+  <td>R$ 1.90</td>
+  <td>3.45%/dia</td>
+  <td><b>10.47%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>P250 | Muertos (Minimal Wear)</td>
+  <td>R$ 65.67</td>
+  <td>132</td>
+  <td>R$ 71.50</td>
+  <td>R$ 72.54</td>
+  <td>3.30%/dia</td>
+  <td><b>10.46%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Yeti Camo (Minimal Wear)</td>
+  <td>R$ 11.78</td>
+  <td>248</td>
+  <td>R$ 12.58</td>
+  <td>R$ 13.01</td>
+  <td>15.00%/dia</td>
+  <td><b>10.44%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Serpent Strike (Factory New)</td>
+  <td>R$ 20.93</td>
+  <td>340</td>
+  <td>R$ 23.32</td>
+  <td>R$ 23.08</td>
+  <td>15.00%/dia</td>
+  <td><b>10.27%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>AWP | Green Energy (Field-Tested)</td>
+  <td>R$ 105.86</td>
+  <td>186</td>
+  <td>R$ 109.30</td>
+  <td>R$ 116.73</td>
+  <td>9.18%/dia</td>
+  <td><b>10.27%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>★ Driver Gloves | King Snake (Field-Tested)</td>
+  <td>R$ 1210.71</td>
+  <td>238</td>
+  <td>R$ 1310.37</td>
+  <td>R$ 1333.63</td>
+  <td>15.00%/dia</td>
+  <td><b>10.15%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>★ Sport Gloves | Scarlet Shamagh (Field-Tested)</td>
+  <td>R$ 1565.48</td>
+  <td>156</td>
+  <td>R$ 1703.32</td>
+  <td>R$ 1723.64</td>
+  <td>6.91%/dia</td>
+  <td><b>10.10%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>Dual Berettas | Cobalt Quartz (Factory New)</td>
+  <td>R$ 5.46</td>
+  <td>171</td>
+  <td>R$ 7.18</td>
+  <td>R$ 6.01</td>
+  <td>15.00%/dia</td>
+  <td><b>10.07%</b></td>
+  <td>3 dias</td>
+  <td class="green">BUY</td>
+</tr>
+
+<tr>
+  <td>MP9 | Ruby Poison Dart (Minimal Wear)</td>
+  <td>R$ 16.75</td>
+  <td>164</td>
+  <td>R$ 16.63</td>
+  <td>R$ 18.41</td>
+  <td>8.75%/dia</td>
+  <td><b>9.91%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Dual Berettas | Flora Carnivora (Minimal Wear)</td>
+  <td>R$ 6.93</td>
+  <td>179</td>
+  <td>R$ 7.43</td>
+  <td>R$ 7.61</td>
+  <td>10.73%/dia</td>
+  <td><b>9.81%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Light Box (Minimal Wear)</td>
+  <td>R$ 1.23</td>
+  <td>139</td>
+  <td>R$ 1.23</td>
+  <td>R$ 1.35</td>
+  <td>2.90%/dia</td>
+  <td><b>9.76%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AWP | PAW (Minimal Wear)</td>
+  <td>R$ 20.13</td>
+  <td>129</td>
+  <td>R$ 22.95</td>
+  <td>R$ 22.09</td>
+  <td>15.00%/dia</td>
+  <td><b>9.74%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Ice Coaled (Factory New)</td>
+  <td>R$ 105.19</td>
+  <td>147</td>
+  <td>R$ 107.89</td>
+  <td>R$ 115.31</td>
+  <td>10.93%/dia</td>
+  <td><b>9.62%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Midnight Laminate (Minimal Wear)</td>
+  <td>R$ 100.83</td>
+  <td>517</td>
+  <td>R$ 102.24</td>
+  <td>R$ 110.28</td>
+  <td>9.04%/dia</td>
+  <td><b>9.37%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Aquamarine Revenge (Field-Tested)</td>
+  <td>R$ 244.13</td>
+  <td>144</td>
+  <td>R$ 252.97</td>
+  <td>R$ 266.65</td>
+  <td>5.96%/dia</td>
+  <td><b>9.22%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Tooth Fairy (Minimal Wear)</td>
+  <td>R$ 33.57</td>
+  <td>202</td>
+  <td>R$ 36.33</td>
+  <td>R$ 36.64</td>
+  <td>15.00%/dia</td>
+  <td><b>9.15%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ MP7 | Bloodsport (Minimal Wear)</td>
+  <td>R$ 190.12</td>
+  <td>106</td>
+  <td>R$ 219.64</td>
+  <td>R$ 207.31</td>
+  <td>6.94%/dia</td>
+  <td><b>9.04%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MP7 | Fade (Minimal Wear)</td>
+  <td>R$ 66.89</td>
+  <td>471</td>
+  <td>R$ 64.99</td>
+  <td>R$ 72.91</td>
+  <td>15.00%/dia</td>
+  <td><b>9.00%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Solitude (Field-Tested)</td>
+  <td>R$ 14.54</td>
+  <td>785</td>
+  <td>R$ 15.59</td>
+  <td>R$ 15.83</td>
+  <td>15.00%/dia</td>
+  <td><b>8.87%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>USP-S | Black Lotus (Minimal Wear)</td>
+  <td>R$ 20.07</td>
+  <td>277</td>
+  <td>R$ 23.26</td>
+  <td>R$ 21.85</td>
+  <td>15.00%/dia</td>
+  <td><b>8.87%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Nuclear Garden (Field-Tested)</td>
+  <td>R$ 10.43</td>
+  <td>252</td>
+  <td>R$ 11.11</td>
+  <td>R$ 11.35</td>
+  <td>15.00%/dia</td>
+  <td><b>8.82%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Jawbreaker (Field-Tested)</td>
+  <td>R$ 74.99</td>
+  <td>133</td>
+  <td>R$ 83.46</td>
+  <td>R$ 81.56</td>
+  <td>8.74%/dia</td>
+  <td><b>8.76%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Dual Berettas | Flora Carnivora (Field-Tested)</td>
+  <td>R$ 2.88</td>
+  <td>132</td>
+  <td>R$ 3.07</td>
+  <td>R$ 3.13</td>
+  <td>6.56%/dia</td>
+  <td><b>8.68%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>USP-S | PC-GRN (Minimal Wear)</td>
+  <td>R$ 2.09</td>
+  <td>201</td>
+  <td>R$ 2.27</td>
+  <td>R$ 2.27</td>
+  <td>15.00%/dia</td>
+  <td><b>8.61%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>USP-S | Ticket to Hell (Factory New)</td>
+  <td>R$ 19.95</td>
+  <td>204</td>
+  <td>R$ 21.05</td>
+  <td>R$ 21.66</td>
+  <td>15.00%/dia</td>
+  <td><b>8.57%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ SSG 08 | Memorial (Minimal Wear)</td>
+  <td>R$ 3.62</td>
+  <td>92</td>
+  <td>R$ 3.80</td>
+  <td>R$ 3.93</td>
+  <td>12.26%/dia</td>
+  <td><b>8.56%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Frontside Misty (Field-Tested)</td>
+  <td>R$ 116.11</td>
+  <td>333</td>
+  <td>R$ 127.83</td>
+  <td>R$ 125.99</td>
+  <td>15.00%/dia</td>
+  <td><b>8.51%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>P250 | Vino Primo (Minimal Wear)</td>
+  <td>R$ 19.15</td>
+  <td>139</td>
+  <td>R$ 20.62</td>
+  <td>R$ 20.74</td>
+  <td>13.14%/dia</td>
+  <td><b>8.30%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Meteorite (Factory New)</td>
+  <td>R$ 10.37</td>
+  <td>169</td>
+  <td>R$ 10.49</td>
+  <td>R$ 11.23</td>
+  <td>15.00%/dia</td>
+  <td><b>8.29%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>★ Specialist Gloves | Fade (Field-Tested)</td>
+  <td>R$ 1515.22</td>
+  <td>149</td>
+  <td>R$ 1609.67</td>
+  <td>R$ 1639.37</td>
+  <td>7.14%/dia</td>
+  <td><b>8.19%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>USP-S | Royal Guard (Minimal Wear)</td>
+  <td>R$ 47.56</td>
+  <td>280</td>
+  <td>R$ 53.45</td>
+  <td>R$ 51.43</td>
+  <td>15.00%/dia</td>
+  <td><b>8.14%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Midnight Laminate (Factory New)</td>
+  <td>R$ 201.48</td>
+  <td>193</td>
+  <td>R$ 212.40</td>
+  <td>R$ 217.86</td>
+  <td>15.00%/dia</td>
+  <td><b>8.13%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Nightmare (Field-Tested)</td>
+  <td>R$ 60.08</td>
+  <td>479</td>
+  <td>R$ 63.89</td>
+  <td>R$ 64.93</td>
+  <td>15.00%/dia</td>
+  <td><b>8.07%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ P250 | Valence (Field-Tested)</td>
+  <td>R$ 3.13</td>
+  <td>66</td>
+  <td>R$ 3.13</td>
+  <td>R$ 3.38</td>
+  <td>5.89%/dia</td>
+  <td><b>7.99%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Glitched Paint (Minimal Wear)</td>
+  <td>R$ 47.62</td>
+  <td>202</td>
+  <td>R$ 48.30</td>
+  <td>R$ 51.37</td>
+  <td>7.17%/dia</td>
+  <td><b>7.87%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Tuxedo (Factory New)</td>
+  <td>R$ 22.71</td>
+  <td>266</td>
+  <td>R$ 31.54</td>
+  <td>R$ 24.49</td>
+  <td>15.00%/dia</td>
+  <td><b>7.84%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Liquidation (Minimal Wear)</td>
+  <td>R$ 44.68</td>
+  <td>471</td>
+  <td>R$ 46.33</td>
+  <td>R$ 48.11</td>
+  <td>5.68%/dia</td>
+  <td><b>7.68%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Crimson Tsunami (Minimal Wear)</td>
+  <td>R$ 20.68</td>
+  <td>130</td>
+  <td>R$ 22.15</td>
+  <td>R$ 22.22</td>
+  <td>5.39%/dia</td>
+  <td><b>7.45%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ MAC-10 | Sakkaku (Field-Tested)</td>
+  <td>R$ 12.40</td>
+  <td>101</td>
+  <td>R$ 13.44</td>
+  <td>R$ 13.32</td>
+  <td>10.96%/dia</td>
+  <td><b>7.42%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>UMP-45 | Crimson Foil (Minimal Wear)</td>
+  <td>R$ 37.25</td>
+  <td>141</td>
+  <td>R$ 40.01</td>
+  <td>R$ 40.01</td>
+  <td>10.32%/dia</td>
+  <td><b>7.41%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AWP | Duality (Minimal Wear)</td>
+  <td>R$ 71.13</td>
+  <td>93</td>
+  <td>R$ 81.25</td>
+  <td>R$ 76.34</td>
+  <td>15.00%/dia</td>
+  <td><b>7.32%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Serpent Strike (Factory New)</td>
+  <td>R$ 42.35</td>
+  <td>191</td>
+  <td>R$ 44.49</td>
+  <td>R$ 45.41</td>
+  <td>15.00%/dia</td>
+  <td><b>7.23%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>SG 553 | Dragon Tech (Field-Tested)</td>
+  <td>R$ 2.52</td>
+  <td>130</td>
+  <td>R$ 2.64</td>
+  <td>R$ 2.70</td>
+  <td>5.95%/dia</td>
+  <td><b>7.14%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Moonrise (Minimal Wear)</td>
+  <td>R$ 10.43</td>
+  <td>216</td>
+  <td>R$ 9.76</td>
+  <td>R$ 11.17</td>
+  <td>8.97%/dia</td>
+  <td><b>7.09%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>USP-S | Stainless (Field-Tested)</td>
+  <td>R$ 39.40</td>
+  <td>166</td>
+  <td>R$ 41.00</td>
+  <td>R$ 42.16</td>
+  <td>15.00%/dia</td>
+  <td><b>7.01%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Green Apple (Factory New)</td>
+  <td>R$ 3.62</td>
+  <td>453</td>
+  <td>R$ 3.19</td>
+  <td>R$ 3.87</td>
+  <td>15.00%/dia</td>
+  <td><b>6.91%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MP7 | Fade (Factory New)</td>
+  <td>R$ 119.92</td>
+  <td>546</td>
+  <td>R$ 119.30</td>
+  <td>R$ 128.14</td>
+  <td>15.00%/dia</td>
+  <td><b>6.85%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MAG-7 | Wildwood (Factory New)</td>
+  <td>R$ 1.78</td>
+  <td>181</td>
+  <td>R$ 1.78</td>
+  <td>R$ 1.90</td>
+  <td>9.87%/dia</td>
+  <td><b>6.74%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>UMP-45 | K.O. Factory (Minimal Wear)</td>
+  <td>R$ 43.39</td>
+  <td>132</td>
+  <td>R$ 47.50</td>
+  <td>R$ 46.15</td>
+  <td>5.72%/dia</td>
+  <td><b>6.36%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Frontside Misty (Minimal Wear)</td>
+  <td>R$ 197.18</td>
+  <td>179</td>
+  <td>R$ 206.63</td>
+  <td>R$ 209.70</td>
+  <td>6.44%/dia</td>
+  <td><b>6.35%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AWP | Ice Coaled (Field-Tested)</td>
+  <td>R$ 61.98</td>
+  <td>214</td>
+  <td>R$ 63.21</td>
+  <td>R$ 65.91</td>
+  <td>2.86%/dia</td>
+  <td><b>6.34%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Black Lotus (Factory New)</td>
+  <td>R$ 122.43</td>
+  <td>281</td>
+  <td>R$ 129.18</td>
+  <td>R$ 130.04</td>
+  <td>15.00%/dia</td>
+  <td><b>6.22%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>★ Hand Wraps | Cobalt Skulls (Field-Tested)</td>
+  <td>R$ 1552.23</td>
+  <td>136</td>
+  <td>R$ 1669.87</td>
+  <td>R$ 1643.61</td>
+  <td>8.31%/dia</td>
+  <td><b>5.89%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Tec-9 | Isaac (Minimal Wear)</td>
+  <td>R$ 33.63</td>
+  <td>193</td>
+  <td>R$ 36.21</td>
+  <td>R$ 35.59</td>
+  <td>10.34%/dia</td>
+  <td><b>5.83%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Trigger Discipline (Minimal Wear)</td>
+  <td>R$ 34.00</td>
+  <td>72</td>
+  <td>R$ 36.33</td>
+  <td>R$ 35.96</td>
+  <td>7.87%/dia</td>
+  <td><b>5.76%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Blue Laminate (Minimal Wear)</td>
+  <td>R$ 157.17</td>
+  <td>142</td>
+  <td>R$ 299.98</td>
+  <td>R$ 166.01</td>
+  <td>15.00%/dia</td>
+  <td><b>5.62%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Saibā Oni (Field-Tested)</td>
+  <td>R$ 7.79</td>
+  <td>215</td>
+  <td>R$ 8.47</td>
+  <td>R$ 8.22</td>
+  <td>15.00%/dia</td>
+  <td><b>5.52%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>R8 Revolver | Amber Fade (Field-Tested)</td>
+  <td>R$ 7.92</td>
+  <td>350</td>
+  <td>R$ 8.53</td>
+  <td>R$ 8.35</td>
+  <td>10.27%/dia</td>
+  <td><b>5.43%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Serpent Strike (Minimal Wear)</td>
+  <td>R$ 21.66</td>
+  <td>212</td>
+  <td>R$ 22.28</td>
+  <td>R$ 22.83</td>
+  <td>5.78%/dia</td>
+  <td><b>5.40%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Pipsqueak (Minimal Wear)</td>
+  <td>R$ 8.10</td>
+  <td>234</td>
+  <td>R$ 8.41</td>
+  <td>R$ 8.53</td>
+  <td>15.00%/dia</td>
+  <td><b>5.31%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MP7 | Bloodsport (Field-Tested)</td>
+  <td>R$ 193.01</td>
+  <td>130</td>
+  <td>R$ 203.07</td>
+  <td>R$ 203.20</td>
+  <td>6.00%/dia</td>
+  <td><b>5.28%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>USP-S | Tropical Breeze (Field-Tested)</td>
+  <td>R$ 7.00</td>
+  <td>244</td>
+  <td>R$ 6.93</td>
+  <td>R$ 7.36</td>
+  <td>7.46%/dia</td>
+  <td><b>5.14%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Conspiracy (Factory New)</td>
+  <td>R$ 115.07</td>
+  <td>145</td>
+  <td>R$ 125.26</td>
+  <td>R$ 120.96</td>
+  <td>15.00%/dia</td>
+  <td><b>5.12%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MP7 | Just Smile (Field-Tested)</td>
+  <td>R$ 3.62</td>
+  <td>136</td>
+  <td>R$ 3.68</td>
+  <td>R$ 3.80</td>
+  <td>7.14%/dia</td>
+  <td><b>4.97%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Bloodsport (Minimal Wear)</td>
+  <td>R$ 922.39</td>
+  <td>180</td>
+  <td>R$ 967.07</td>
+  <td>R$ 967.01</td>
+  <td>5.90%/dia</td>
+  <td><b>4.84%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Vogue (Minimal Wear)</td>
+  <td>R$ 37.01</td>
+  <td>272</td>
+  <td>R$ 38.66</td>
+  <td>R$ 38.79</td>
+  <td>10.89%/dia</td>
+  <td><b>4.81%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Souvenir USP-S | Purple DDPAT (Minimal Wear)</td>
+  <td>R$ 36.33</td>
+  <td>169</td>
+  <td>R$ 37.62</td>
+  <td>R$ 38.05</td>
+  <td>15.00%/dia</td>
+  <td><b>4.73%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Fade (Factory New)</td>
+  <td>R$ 2460.81</td>
+  <td>257</td>
+  <td>R$ 2521.44</td>
+  <td>R$ 2575.69</td>
+  <td>4.90%/dia</td>
+  <td><b>4.67%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Ice Coaled (Field-Tested)</td>
+  <td>R$ 66.10</td>
+  <td>134</td>
+  <td>R$ 68.92</td>
+  <td>R$ 69.16</td>
+  <td>8.09%/dia</td>
+  <td><b>4.63%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>MP9 | Mount Fuji (Field-Tested)</td>
+  <td>R$ 38.54</td>
+  <td>219</td>
+  <td>R$ 38.85</td>
+  <td>R$ 40.32</td>
+  <td>4.49%/dia</td>
+  <td><b>4.62%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Trigger Discipline (Minimal Wear)</td>
+  <td>R$ 13.75</td>
+  <td>175</td>
+  <td>R$ 15.28</td>
+  <td>R$ 14.36</td>
+  <td>8.95%/dia</td>
+  <td><b>4.44%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>USP-S | Tropical Breeze (Minimal Wear)</td>
+  <td>R$ 14.05</td>
+  <td>260</td>
+  <td>R$ 13.87</td>
+  <td>R$ 14.67</td>
+  <td>10.62%/dia</td>
+  <td><b>4.41%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A4 | Temukau (Field-Tested)</td>
+  <td>R$ 203.50</td>
+  <td>94</td>
+  <td>R$ 213.63</td>
+  <td>R$ 212.40</td>
+  <td>8.44%/dia</td>
+  <td><b>4.37%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>USP-S | Jawbreaker (Minimal Wear)</td>
+  <td>R$ 52.78</td>
+  <td>463</td>
+  <td>R$ 54.31</td>
+  <td>R$ 55.05</td>
+  <td>4.96%/dia</td>
+  <td><b>4.30%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AWP | Capillary (Field-Tested)</td>
+  <td>R$ 11.48</td>
+  <td>83</td>
+  <td>R$ 11.91</td>
+  <td>R$ 11.97</td>
+  <td>8.18%/dia</td>
+  <td><b>4.27%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Emphorosaur-S (Field-Tested)</td>
+  <td>R$ 10.19</td>
+  <td>148</td>
+  <td>R$ 11.11</td>
+  <td>R$ 10.62</td>
+  <td>12.32%/dia</td>
+  <td><b>4.22%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Ice Coaled (Minimal Wear)</td>
+  <td>R$ 52.72</td>
+  <td>450</td>
+  <td>R$ 57.07</td>
+  <td>R$ 54.93</td>
+  <td>15.00%/dia</td>
+  <td><b>4.19%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Liquidation (Minimal Wear)</td>
+  <td>R$ 118.20</td>
+  <td>133</td>
+  <td>R$ 130.66</td>
+  <td>R$ 123.11</td>
+  <td>10.12%/dia</td>
+  <td><b>4.15%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>P250 | Asiimov (Field-Tested)</td>
+  <td>R$ 63.76</td>
+  <td>166</td>
+  <td>R$ 67.02</td>
+  <td>R$ 66.40</td>
+  <td>14.91%/dia</td>
+  <td><b>4.14%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Midnight Laminate (Field-Tested)</td>
+  <td>R$ 46.21</td>
+  <td>494</td>
+  <td>R$ 48.54</td>
+  <td>R$ 48.11</td>
+  <td>15.00%/dia</td>
+  <td><b>4.11%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AWP | Printstream (Field-Tested)</td>
+  <td>R$ 537.35</td>
+  <td>68</td>
+  <td>R$ 581.85</td>
+  <td>R$ 559.33</td>
+  <td>6.85%/dia</td>
+  <td><b>4.09%</b></td>
+  <td>3 dias</td>
+  <td class="yellow">HOLD</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Spider Lily (Field-Tested)</td>
+  <td>R$ 52.29</td>
+  <td>193</td>
+  <td>R$ 53.70</td>
+  <td>R$ 54.37</td>
+  <td>14.09%/dia</td>
+  <td><b>3.98%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Slate (Field-Tested)</td>
+  <td>R$ 29.83</td>
+  <td>706</td>
+  <td>R$ 30.93</td>
+  <td>R$ 30.99</td>
+  <td>15.00%/dia</td>
+  <td><b>3.89%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Serpent Strike (Field-Tested)</td>
+  <td>R$ 7.92</td>
+  <td>121</td>
+  <td>R$ 7.79</td>
+  <td>R$ 8.22</td>
+  <td>7.32%/dia</td>
+  <td><b>3.79%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Kumicho Dragon (Field-Tested)</td>
+  <td>R$ 118.20</td>
+  <td>211</td>
+  <td>R$ 121.45</td>
+  <td>R$ 122.56</td>
+  <td>4.92%/dia</td>
+  <td><b>3.69%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Jawbreaker (Field-Tested)</td>
+  <td>R$ 31.11</td>
+  <td>836</td>
+  <td>R$ 31.30</td>
+  <td>R$ 32.22</td>
+  <td>10.11%/dia</td>
+  <td><b>3.57%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Block-18 (Field-Tested)</td>
+  <td>R$ 3.38</td>
+  <td>165</td>
+  <td>R$ 3.44</td>
+  <td>R$ 3.50</td>
+  <td>6.10%/dia</td>
+  <td><b>3.55%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Broken Fang Gloves | Jade (Field-Tested)</td>
+  <td>R$ 560.37</td>
+  <td>131</td>
+  <td>R$ 573.50</td>
+  <td>R$ 580.19</td>
+  <td>6.59%/dia</td>
+  <td><b>3.54%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Five-SeveN | Scrawl (Minimal Wear)</td>
+  <td>R$ 1.72</td>
+  <td>83</td>
+  <td>R$ 2.03</td>
+  <td>R$ 1.78</td>
+  <td>10.84%/dia</td>
+  <td><b>3.49%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AWP | Atheris (Field-Tested)</td>
+  <td>R$ 60.08</td>
+  <td>100</td>
+  <td>R$ 64.62</td>
+  <td>R$ 62.17</td>
+  <td>4.59%/dia</td>
+  <td><b>3.48%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Nightmare (Minimal Wear)</td>
+  <td>R$ 168.89</td>
+  <td>227</td>
+  <td>R$ 178.28</td>
+  <td>R$ 174.66</td>
+  <td>13.27%/dia</td>
+  <td><b>3.42%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>XM1014 | Monster Melt (Field-Tested)</td>
+  <td>R$ 23.75</td>
+  <td>138</td>
+  <td>R$ 26.20</td>
+  <td>R$ 24.55</td>
+  <td>11.31%/dia</td>
+  <td><b>3.37%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Slate (Minimal Wear)</td>
+  <td>R$ 146.55</td>
+  <td>139</td>
+  <td>R$ 152.32</td>
+  <td>R$ 151.46</td>
+  <td>15.00%/dia</td>
+  <td><b>3.35%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Redline (Field-Tested)</td>
+  <td>R$ 492.92</td>
+  <td>71</td>
+  <td>R$ 492.92</td>
+  <td>R$ 509.19</td>
+  <td>14.01%/dia</td>
+  <td><b>3.30%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Moto Gloves | Polygon (Field-Tested)</td>
+  <td>R$ 854.88</td>
+  <td>242</td>
+  <td>R$ 877.77</td>
+  <td>R$ 882.93</td>
+  <td>5.23%/dia</td>
+  <td><b>3.28%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Point Disarray (Field-Tested)</td>
+  <td>R$ 89.54</td>
+  <td>177</td>
+  <td>R$ 94.26</td>
+  <td>R$ 92.42</td>
+  <td>9.67%/dia</td>
+  <td><b>3.22%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Driver Gloves | Racing Green (Field-Tested)</td>
+  <td>R$ 237.07</td>
+  <td>320</td>
+  <td>R$ 241.37</td>
+  <td>R$ 244.68</td>
+  <td>10.33%/dia</td>
+  <td><b>3.21%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Cobalt Paisley (Factory New)</td>
+  <td>R$ 18.04</td>
+  <td>158</td>
+  <td>R$ 16.39</td>
+  <td>R$ 18.60</td>
+  <td>7.23%/dia</td>
+  <td><b>3.10%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Light Rail (Field-Tested)</td>
+  <td>R$ 22.09</td>
+  <td>84</td>
+  <td>R$ 23.26</td>
+  <td>R$ 22.77</td>
+  <td>3.35%/dia</td>
+  <td><b>3.08%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Stone Cold (Field-Tested)</td>
+  <td>R$ 16.08</td>
+  <td>201</td>
+  <td>R$ 15.96</td>
+  <td>R$ 16.57</td>
+  <td>13.57%/dia</td>
+  <td><b>3.05%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Specialist Gloves | Field Agent (Field-Tested)</td>
+  <td>R$ 1026.29</td>
+  <td>160</td>
+  <td>R$ 1041.82</td>
+  <td>R$ 1057.16</td>
+  <td>15.00%/dia</td>
+  <td><b>3.01%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ MP7 | Bloodsport (Field-Tested)</td>
+  <td>R$ 145.88</td>
+  <td>304</td>
+  <td>R$ 148.09</td>
+  <td>R$ 150.23</td>
+  <td>8.42%/dia</td>
+  <td><b>2.98%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Chromatic Aberration (Minimal Wear)</td>
+  <td>R$ 47.87</td>
+  <td>203</td>
+  <td>R$ 52.90</td>
+  <td>R$ 49.28</td>
+  <td>15.00%/dia</td>
+  <td><b>2.95%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | The Outsiders (Field-Tested)</td>
+  <td>R$ 53.58</td>
+  <td>210</td>
+  <td>R$ 56.64</td>
+  <td>R$ 55.11</td>
+  <td>14.77%/dia</td>
+  <td><b>2.86%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Slate (Minimal Wear)</td>
+  <td>R$ 47.32</td>
+  <td>594</td>
+  <td>R$ 49.46</td>
+  <td>R$ 48.67</td>
+  <td>15.00%/dia</td>
+  <td><b>2.85%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Black Nile (Field-Tested)</td>
+  <td>R$ 22.03</td>
+  <td>339</td>
+  <td>R$ 22.65</td>
+  <td>R$ 22.65</td>
+  <td>9.87%/dia</td>
+  <td><b>2.81%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Nomad Knife | Tiger Tooth (Factory New)</td>
+  <td>R$ 1215.43</td>
+  <td>128</td>
+  <td>R$ 1268.95</td>
+  <td>R$ 1249.55</td>
+  <td>3.10%/dia</td>
+  <td><b>2.81%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Umbral Rabbit (Field-Tested)</td>
+  <td>R$ 6.63</td>
+  <td>111</td>
+  <td>R$ 7.00</td>
+  <td>R$ 6.81</td>
+  <td>15.00%/dia</td>
+  <td><b>2.71%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Inheritance (Minimal Wear)</td>
+  <td>R$ 491.57</td>
+  <td>312</td>
+  <td>R$ 500.47</td>
+  <td>R$ 504.22</td>
+  <td>10.58%/dia</td>
+  <td><b>2.57%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A4 | Etch Lord (Field-Tested)</td>
+  <td>R$ 9.88</td>
+  <td>72</td>
+  <td>R$ 10.56</td>
+  <td>R$ 10.13</td>
+  <td>8.47%/dia</td>
+  <td><b>2.53%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Uncharted (Field-Tested)</td>
+  <td>R$ 4.79</td>
+  <td>132</td>
+  <td>R$ 4.85</td>
+  <td>R$ 4.91</td>
+  <td>10.66%/dia</td>
+  <td><b>2.51%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ MP9 | Nexus (Minimal Wear)</td>
+  <td>R$ 2.88</td>
+  <td>78</td>
+  <td>R$ 2.64</td>
+  <td>R$ 2.95</td>
+  <td>3.30%/dia</td>
+  <td><b>2.43%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Head Shot (Minimal Wear)</td>
+  <td>R$ 310.59</td>
+  <td>67</td>
+  <td>R$ 310.59</td>
+  <td>R$ 317.90</td>
+  <td>3.30%/dia</td>
+  <td><b>2.35%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Ice Coaled (Minimal Wear)</td>
+  <td>R$ 123.29</td>
+  <td>190</td>
+  <td>R$ 120.41</td>
+  <td>R$ 125.93</td>
+  <td>4.73%/dia</td>
+  <td><b>2.14%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Starlight Protector (Minimal Wear)</td>
+  <td>R$ 423.76</td>
+  <td>131</td>
+  <td>R$ 446.16</td>
+  <td>R$ 432.84</td>
+  <td>13.17%/dia</td>
+  <td><b>2.14%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Liquidation (Field-Tested)</td>
+  <td>R$ 23.20</td>
+  <td>344</td>
+  <td>R$ 24.18</td>
+  <td>R$ 23.69</td>
+  <td>15.00%/dia</td>
+  <td><b>2.11%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Umbral Rabbit (Minimal Wear)</td>
+  <td>R$ 6.44</td>
+  <td>216</td>
+  <td>R$ 5.89</td>
+  <td>R$ 6.57</td>
+  <td>15.00%/dia</td>
+  <td><b>2.02%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Arctic Tri-Tone (Minimal Wear)</td>
+  <td>R$ 39.71</td>
+  <td>213</td>
+  <td>R$ 40.50</td>
+  <td>R$ 40.50</td>
+  <td>15.00%/dia</td>
+  <td><b>1.99%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Umbral Rabbit (Field-Tested)</td>
+  <td>R$ 3.07</td>
+  <td>256</td>
+  <td>R$ 3.13</td>
+  <td>R$ 3.13</td>
+  <td>15.00%/dia</td>
+  <td><b>1.95%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Hybrid (Field-Tested)</td>
+  <td>R$ 3.13</td>
+  <td>150</td>
+  <td>R$ 3.25</td>
+  <td>R$ 3.19</td>
+  <td>2.99%/dia</td>
+  <td><b>1.92%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Inheritance (Field-Tested)</td>
+  <td>R$ 334.16</td>
+  <td>742</td>
+  <td>R$ 336.12</td>
+  <td>R$ 340.42</td>
+  <td>9.01%/dia</td>
+  <td><b>1.87%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Kill Confirmed (Field-Tested)</td>
+  <td>R$ 411.36</td>
+  <td>152</td>
+  <td>R$ 436.65</td>
+  <td>R$ 418.85</td>
+  <td>6.22%/dia</td>
+  <td><b>1.82%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Blueprint (Minimal Wear)</td>
+  <td>R$ 60.88</td>
+  <td>162</td>
+  <td>R$ 61.00</td>
+  <td>R$ 61.98</td>
+  <td>6.81%/dia</td>
+  <td><b>1.81%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Arctic Tri-Tone (Factory New)</td>
+  <td>R$ 102.79</td>
+  <td>158</td>
+  <td>R$ 104.64</td>
+  <td>R$ 104.64</td>
+  <td>12.26%/dia</td>
+  <td><b>1.80%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Tilted (Minimal Wear)</td>
+  <td>R$ 3.44</td>
+  <td>801</td>
+  <td>R$ 3.44</td>
+  <td>R$ 3.50</td>
+  <td>15.00%/dia</td>
+  <td><b>1.74%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Printstream (Field-Tested)</td>
+  <td>R$ 317.34</td>
+  <td>516</td>
+  <td>R$ 322.74</td>
+  <td>R$ 322.74</td>
+  <td>8.63%/dia</td>
+  <td><b>1.70%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Control (Minimal Wear)</td>
+  <td>R$ 7.06</td>
+  <td>128</td>
+  <td>R$ 7.18</td>
+  <td>R$ 7.18</td>
+  <td>2.81%/dia</td>
+  <td><b>1.70%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Desolate Space (Field-Tested)</td>
+  <td>R$ 78.37</td>
+  <td>532</td>
+  <td>R$ 79.11</td>
+  <td>R$ 79.66</td>
+  <td>10.15%/dia</td>
+  <td><b>1.65%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Monkey Business (Field-Tested)</td>
+  <td>R$ 64.25</td>
+  <td>149</td>
+  <td>R$ 66.10</td>
+  <td>R$ 65.24</td>
+  <td>15.00%/dia</td>
+  <td><b>1.54%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Mount Fuji (Minimal Wear)</td>
+  <td>R$ 62.17</td>
+  <td>213</td>
+  <td>R$ 62.11</td>
+  <td>R$ 63.09</td>
+  <td>2.54%/dia</td>
+  <td><b>1.48%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Fever Dream (Minimal Wear)</td>
+  <td>R$ 12.58</td>
+  <td>172</td>
+  <td>R$ 12.76</td>
+  <td>R$ 12.76</td>
+  <td>8.17%/dia</td>
+  <td><b>1.43%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Ticket to Hell (Field-Tested)</td>
+  <td>R$ 4.42</td>
+  <td>275</td>
+  <td>R$ 4.48</td>
+  <td>R$ 4.48</td>
+  <td>12.50%/dia</td>
+  <td><b>1.36%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Food Chain (Minimal Wear)</td>
+  <td>R$ 46.27</td>
+  <td>157</td>
+  <td>R$ 46.27</td>
+  <td>R$ 46.89</td>
+  <td>5.30%/dia</td>
+  <td><b>1.34%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Duality (Field-Tested)</td>
+  <td>R$ 23.26</td>
+  <td>486</td>
+  <td>R$ 23.75</td>
+  <td>R$ 23.57</td>
+  <td>10.37%/dia</td>
+  <td><b>1.33%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Arctic Tri-Tone (Field-Tested)</td>
+  <td>R$ 28.05</td>
+  <td>199</td>
+  <td>R$ 29.52</td>
+  <td>R$ 28.41</td>
+  <td>12.24%/dia</td>
+  <td><b>1.28%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Cortex (Minimal Wear)</td>
+  <td>R$ 90.83</td>
+  <td>81</td>
+  <td>R$ 99.30</td>
+  <td>R$ 91.93</td>
+  <td>7.73%/dia</td>
+  <td><b>1.21%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Shinobu (Minimal Wear)</td>
+  <td>R$ 64.44</td>
+  <td>488</td>
+  <td>R$ 64.68</td>
+  <td>R$ 65.17</td>
+  <td>7.77%/dia</td>
+  <td><b>1.13%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Fever Dream (Field-Tested)</td>
+  <td>R$ 5.65</td>
+  <td>184</td>
+  <td>R$ 5.77</td>
+  <td>R$ 5.71</td>
+  <td>9.43%/dia</td>
+  <td><b>1.06%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Broken Fang Gloves | Needle Point (Field-Tested)</td>
+  <td>R$ 368.16</td>
+  <td>183</td>
+  <td>R$ 370.55</td>
+  <td>R$ 372.02</td>
+  <td>2.98%/dia</td>
+  <td><b>1.05%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Dragonfire (Minimal Wear)</td>
+  <td>R$ 1879.88</td>
+  <td>167</td>
+  <td>R$ 1964.39</td>
+  <td>R$ 1898.91</td>
+  <td>4.20%/dia</td>
+  <td><b>1.01%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Block-18 (Minimal Wear)</td>
+  <td>R$ 18.90</td>
+  <td>90</td>
+  <td>R$ 18.29</td>
+  <td>R$ 19.09</td>
+  <td>7.19%/dia</td>
+  <td><b>1.01%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Atheris (Field-Tested)</td>
+  <td>R$ 32.40</td>
+  <td>654</td>
+  <td>R$ 33.08</td>
+  <td>R$ 32.71</td>
+  <td>15.00%/dia</td>
+  <td><b>0.96%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Cortex (Minimal Wear)</td>
+  <td>R$ 47.62</td>
+  <td>249</td>
+  <td>R$ 49.16</td>
+  <td>R$ 48.05</td>
+  <td>3.57%/dia</td>
+  <td><b>0.90%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Ice Coaled (Minimal Wear)</td>
+  <td>R$ 125.32</td>
+  <td>103</td>
+  <td>R$ 129.43</td>
+  <td>R$ 126.42</td>
+  <td>12.63%/dia</td>
+  <td><b>0.88%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Tooth Fairy (Field-Tested)</td>
+  <td>R$ 22.46</td>
+  <td>349</td>
+  <td>R$ 22.95</td>
+  <td>R$ 22.65</td>
+  <td>7.75%/dia</td>
+  <td><b>0.85%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Neon Rider (Field-Tested)</td>
+  <td>R$ 301.88</td>
+  <td>259</td>
+  <td>R$ 301.63</td>
+  <td>R$ 304.46</td>
+  <td>12.66%/dia</td>
+  <td><b>0.85%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Trigger Discipline (Field-Tested)</td>
+  <td>R$ 16.14</td>
+  <td>88</td>
+  <td>R$ 16.02</td>
+  <td>R$ 16.26</td>
+  <td>10.01%/dia</td>
+  <td><b>0.74%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Choppa (Factory New)</td>
+  <td>R$ 16.63</td>
+  <td>129</td>
+  <td>R$ 17.00</td>
+  <td>R$ 16.75</td>
+  <td>10.88%/dia</td>
+  <td><b>0.72%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Rocket Pop (Minimal Wear)</td>
+  <td>R$ 18.17</td>
+  <td>144</td>
+  <td>R$ 18.17</td>
+  <td>R$ 18.29</td>
+  <td>8.06%/dia</td>
+  <td><b>0.66%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Ticket to Hell (Field-Tested)</td>
+  <td>R$ 9.27</td>
+  <td>178</td>
+  <td>R$ 9.33</td>
+  <td>R$ 9.33</td>
+  <td>9.39%/dia</td>
+  <td><b>0.65%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Player Two (Field-Tested)</td>
+  <td>R$ 296.42</td>
+  <td>128</td>
+  <td>R$ 303.17</td>
+  <td>R$ 298.32</td>
+  <td>3.75%/dia</td>
+  <td><b>0.64%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Worm God (Minimal Wear)</td>
+  <td>R$ 19.58</td>
+  <td>146</td>
+  <td>R$ 19.21</td>
+  <td>R$ 19.70</td>
+  <td>11.41%/dia</td>
+  <td><b>0.61%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Duality (Minimal Wear)</td>
+  <td>R$ 42.10</td>
+  <td>310</td>
+  <td>R$ 42.22</td>
+  <td>R$ 42.35</td>
+  <td>6.25%/dia</td>
+  <td><b>0.59%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Tuxedo (Minimal Wear)</td>
+  <td>R$ 10.19</td>
+  <td>223</td>
+  <td>R$ 10.56</td>
+  <td>R$ 10.25</td>
+  <td>9.47%/dia</td>
+  <td><b>0.59%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Ice Coaled (Field-Tested)</td>
+  <td>R$ 32.22</td>
+  <td>661</td>
+  <td>R$ 33.63</td>
+  <td>R$ 32.40</td>
+  <td>15.00%/dia</td>
+  <td><b>0.56%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Basilisk (Field-Tested)</td>
+  <td>R$ 54.31</td>
+  <td>178</td>
+  <td>R$ 55.05</td>
+  <td>R$ 54.56</td>
+  <td>15.00%/dia</td>
+  <td><b>0.46%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Decimator (Minimal Wear)</td>
+  <td>R$ 135.26</td>
+  <td>208</td>
+  <td>R$ 135.44</td>
+  <td>R$ 135.87</td>
+  <td>4.56%/dia</td>
+  <td><b>0.45%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Bloodsport (Field-Tested)</td>
+  <td>R$ 862.25</td>
+  <td>151</td>
+  <td>R$ 880.04</td>
+  <td>R$ 866.17</td>
+  <td>3.95%/dia</td>
+  <td><b>0.45%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Legion of Anubis (Minimal Wear)</td>
+  <td>R$ 216.76</td>
+  <td>210</td>
+  <td>R$ 218.66</td>
+  <td>R$ 217.62</td>
+  <td>2.90%/dia</td>
+  <td><b>0.40%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Light Rail (Minimal Wear)</td>
+  <td>R$ 15.71</td>
+  <td>154</td>
+  <td>R$ 15.40</td>
+  <td>R$ 15.77</td>
+  <td>15.00%/dia</td>
+  <td><b>0.38%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Starlight Protector (Field-Tested)</td>
+  <td>R$ 372.94</td>
+  <td>274</td>
+  <td>R$ 381.78</td>
+  <td>R$ 374.23</td>
+  <td>2.88%/dia</td>
+  <td><b>0.35%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Driver Gloves | Black Tie (Field-Tested)</td>
+  <td>R$ 1086.74</td>
+  <td>217</td>
+  <td>R$ 1087.54</td>
+  <td>R$ 1089.87</td>
+  <td>12.86%/dia</td>
+  <td><b>0.29%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Shinobu (Field-Tested)</td>
+  <td>R$ 35.10</td>
+  <td>858</td>
+  <td>R$ 36.27</td>
+  <td>R$ 35.16</td>
+  <td>15.00%/dia</td>
+  <td><b>0.17%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Driver Gloves | Snow Leopard (Field-Tested)</td>
+  <td>R$ 2331.26</td>
+  <td>211</td>
+  <td>R$ 2322.54</td>
+  <td>R$ 2334.70</td>
+  <td>11.51%/dia</td>
+  <td><b>0.15%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Atheris (Minimal Wear)</td>
+  <td>R$ 53.27</td>
+  <td>546</td>
+  <td>R$ 55.42</td>
+  <td>R$ 53.33</td>
+  <td>9.16%/dia</td>
+  <td><b>0.11%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Dragonfire (Field-Tested)</td>
+  <td>R$ 1710.75</td>
+  <td>143</td>
+  <td>R$ 1733.09</td>
+  <td>R$ 1711.91</td>
+  <td>2.28%/dia</td>
+  <td><b>0.07%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Black Lotus (Field-Tested)</td>
+  <td>R$ 41.12</td>
+  <td>1351</td>
+  <td>R$ 41.36</td>
+  <td>R$ 41.06</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Wash me plz (Factory New)</td>
+  <td>R$ 5.16</td>
+  <td>1117</td>
+  <td>R$ 5.03</td>
+  <td>R$ 4.97</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Printstream (Field-Tested)</td>
+  <td>R$ 224.86</td>
+  <td>957</td>
+  <td>R$ 231.43</td>
+  <td>R$ 223.82</td>
+  <td>11.54%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Printstream (Field-Tested)</td>
+  <td>R$ 238.61</td>
+  <td>772</td>
+  <td>R$ 240.51</td>
+  <td>R$ 228.79</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Black Lotus (Minimal Wear)</td>
+  <td>R$ 67.02</td>
+  <td>744</td>
+  <td>R$ 67.02</td>
+  <td>R$ 66.71</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Tilted (Factory New)</td>
+  <td>R$ 20.93</td>
+  <td>683</td>
+  <td>R$ 19.39</td>
+  <td>R$ 17.43</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP5-SD | Savannah Halftone (Field-Tested)</td>
+  <td>R$ 1.47</td>
+  <td>656</td>
+  <td>R$ 1.10</td>
+  <td>R$ 1.41</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Solitude (Minimal Wear)</td>
+  <td>R$ 50.75</td>
+  <td>625</td>
+  <td>R$ 43.94</td>
+  <td>R$ 44.92</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Half Sleeve (Minimal Wear)</td>
+  <td>R$ 1.66</td>
+  <td>592</td>
+  <td>R$ 1.53</td>
+  <td>R$ 1.35</td>
+  <td>8.59%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Alpine Camo (Minimal Wear)</td>
+  <td>R$ 8.47</td>
+  <td>558</td>
+  <td>R$ 8.22</td>
+  <td>R$ 8.16</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Printstream (Minimal Wear)</td>
+  <td>R$ 294.08</td>
+  <td>524</td>
+  <td>R$ 300.28</td>
+  <td>R$ 285.74</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Redline (Field-Tested)</td>
+  <td>R$ 541.10</td>
+  <td>499</td>
+  <td>R$ 330.66</td>
+  <td>R$ 326.86</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Sakkaku (Field-Tested)</td>
+  <td>R$ 8.35</td>
+  <td>477</td>
+  <td>R$ 7.36</td>
+  <td>R$ 7.55</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Vogue (Field-Tested)</td>
+  <td>R$ 23.57</td>
+  <td>468</td>
+  <td>R$ 23.38</td>
+  <td>R$ 23.08</td>
+  <td>7.76%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Destroyer (Field-Tested)</td>
+  <td>R$ 1.29</td>
+  <td>454</td>
+  <td>R$ 0.55</td>
+  <td>R$ 0.49</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Searing Rage (Field-Tested)</td>
+  <td>R$ 33.63</td>
+  <td>453</td>
+  <td>R$ 33.51</td>
+  <td>R$ 32.83</td>
+  <td>5.99%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Night Terror (Field-Tested)</td>
+  <td>R$ 5.22</td>
+  <td>441</td>
+  <td>R$ 5.09</td>
+  <td>R$ 5.22</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Olive Polycam (Factory New)</td>
+  <td>R$ 5.95</td>
+  <td>413</td>
+  <td>R$ 5.83</td>
+  <td>R$ 5.22</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Alpine Camo (Factory New)</td>
+  <td>R$ 28.41</td>
+  <td>406</td>
+  <td>R$ 26.33</td>
+  <td>R$ 26.33</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Ticket to Hell (Minimal Wear)</td>
+  <td>R$ 8.35</td>
+  <td>377</td>
+  <td>R$ 8.10</td>
+  <td>R$ 8.35</td>
+  <td>8.54%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Phantom Disruptor (Field-Tested)</td>
+  <td>R$ 38.79</td>
+  <td>371</td>
+  <td>R$ 40.07</td>
+  <td>R$ 38.11</td>
+  <td>14.31%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Cortex (Field-Tested)</td>
+  <td>R$ 26.20</td>
+  <td>348</td>
+  <td>R$ 26.08</td>
+  <td>R$ 25.90</td>
+  <td>9.38%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Elite Build (Minimal Wear)</td>
+  <td>R$ 24.67</td>
+  <td>334</td>
+  <td>R$ 22.34</td>
+  <td>R$ 22.95</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Mulberry (Field-Tested)</td>
+  <td>R$ 42.28</td>
+  <td>329</td>
+  <td>R$ 39.64</td>
+  <td>R$ 41.06</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Tilted (Field-Tested)</td>
+  <td>R$ 1.35</td>
+  <td>328</td>
+  <td>R$ 1.04</td>
+  <td>R$ 1.10</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Safari Mesh (Field-Tested)</td>
+  <td>R$ 3.07</td>
+  <td>327</td>
+  <td>R$ 3.07</td>
+  <td>R$ 0.92</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Mecha Industries (Field-Tested)</td>
+  <td>R$ 40.20</td>
+  <td>323</td>
+  <td>R$ 38.11</td>
+  <td>R$ 36.70</td>
+  <td>6.21%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Olive Polycam (Minimal Wear)</td>
+  <td>R$ 1.17</td>
+  <td>311</td>
+  <td>R$ 1.23</td>
+  <td>R$ 0.92</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Hand Wraps | Duct Tape (Field-Tested)</td>
+  <td>R$ 395.04</td>
+  <td>299</td>
+  <td>R$ 372.94</td>
+  <td>R$ 365.64</td>
+  <td>7.60%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Driver Gloves | Imperial Plaid (Field-Tested)</td>
+  <td>R$ 1662.69</td>
+  <td>298</td>
+  <td>R$ 1686.08</td>
+  <td>R$ 1646.37</td>
+  <td>10.85%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Serpent Strike (Minimal Wear)</td>
+  <td>R$ 10.19</td>
+  <td>298</td>
+  <td>R$ 8.41</td>
+  <td>R$ 8.10</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Asiimov (Field-Tested)</td>
+  <td>R$ 241.80</td>
+  <td>297</td>
+  <td>R$ 241.80</td>
+  <td>R$ 238.61</td>
+  <td>2.61%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Legion of Anubis (Field-Tested)</td>
+  <td>R$ 202.77</td>
+  <td>296</td>
+  <td>R$ 197.92</td>
+  <td>R$ 196.08</td>
+  <td>6.86%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Emphorosaur-S (Field-Tested)</td>
+  <td>R$ 4.05</td>
+  <td>293</td>
+  <td>R$ 4.11</td>
+  <td>R$ 3.93</td>
+  <td>10.46%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Zeus x27 | Olympus (Field-Tested)</td>
+  <td>R$ 23.20</td>
+  <td>292</td>
+  <td>R$ 23.08</td>
+  <td>R$ 22.40</td>
+  <td>4.60%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Nova | Rain Station (Factory New)</td>
+  <td>R$ 3.25</td>
+  <td>291</td>
+  <td>R$ 4.05</td>
+  <td>R$ 3.07</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Driver Gloves | Overtake (Field-Tested)</td>
+  <td>R$ 451.07</td>
+  <td>290</td>
+  <td>R$ 459.78</td>
+  <td>R$ 443.21</td>
+  <td>7.44%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Wash me plz (Minimal Wear)</td>
+  <td>R$ 1.29</td>
+  <td>289</td>
+  <td>R$ 0.92</td>
+  <td>R$ 0.92</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP9 | Food Chain (Field-Tested)</td>
+  <td>R$ 25.28</td>
+  <td>288</td>
+  <td>R$ 24.98</td>
+  <td>R$ 25.10</td>
+  <td>8.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Temukau (Field-Tested)</td>
+  <td>R$ 208.72</td>
+  <td>287</td>
+  <td>R$ 211.91</td>
+  <td>R$ 208.60</td>
+  <td>7.99%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Chromatic Aberration (Field-Tested)</td>
+  <td>R$ 26.02</td>
+  <td>278</td>
+  <td>R$ 25.90</td>
+  <td>R$ 25.59</td>
+  <td>7.89%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Scrawl (Minimal Wear)</td>
+  <td>R$ 1.29</td>
+  <td>275</td>
+  <td>R$ 1.23</td>
+  <td>R$ 1.17</td>
+  <td>6.39%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Water Elemental (Minimal Wear)</td>
+  <td>R$ 122.06</td>
+  <td>270</td>
+  <td>R$ 112.74</td>
+  <td>R$ 109.79</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Tec-9 | Red Quartz (Field-Tested)</td>
+  <td>R$ 1.90</td>
+  <td>268</td>
+  <td>R$ 1.96</td>
+  <td>R$ 1.90</td>
+  <td>13.41%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Broken Fang Gloves | Unhinged (Field-Tested)</td>
+  <td>R$ 444.01</td>
+  <td>268</td>
+  <td>R$ 438.37</td>
+  <td>R$ 430.33</td>
+  <td>4.54%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Mecha Industries (Minimal Wear)</td>
+  <td>R$ 51.18</td>
+  <td>261</td>
+  <td>R$ 51.37</td>
+  <td>R$ 49.03</td>
+  <td>5.12%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Emphorosaur-S (Minimal Wear)</td>
+  <td>R$ 8.35</td>
+  <td>250</td>
+  <td>R$ 8.47</td>
+  <td>R$ 8.04</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>UMP-45 | K.O. Factory (Field-Tested)</td>
+  <td>R$ 28.17</td>
+  <td>249</td>
+  <td>R$ 28.35</td>
+  <td>R$ 27.19</td>
+  <td>4.58%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Searing Rage (Minimal Wear)</td>
+  <td>R$ 57.63</td>
+  <td>249</td>
+  <td>R$ 58.55</td>
+  <td>R$ 56.15</td>
+  <td>8.46%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Printstream (Minimal Wear)</td>
+  <td>R$ 389.64</td>
+  <td>246</td>
+  <td>R$ 393.20</td>
+  <td>R$ 383.13</td>
+  <td>7.05%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Ticket to Hell (Minimal Wear)</td>
+  <td>R$ 21.17</td>
+  <td>244</td>
+  <td>R$ 21.42</td>
+  <td>R$ 20.37</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Chrome Cannon (Field-Tested)</td>
+  <td>R$ 183.93</td>
+  <td>238</td>
+  <td>R$ 179.94</td>
+  <td>R$ 178.89</td>
+  <td>5.57%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Decimator (Field-Tested)</td>
+  <td>R$ 84.38</td>
+  <td>235</td>
+  <td>R$ 83.40</td>
+  <td>R$ 80.70</td>
+  <td>11.31%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Night Terror (Minimal Wear)</td>
+  <td>R$ 8.78</td>
+  <td>233</td>
+  <td>R$ 7.98</td>
+  <td>R$ 7.67</td>
+  <td>14.61%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Moonrise (Field-Tested)</td>
+  <td>R$ 9.14</td>
+  <td>232</td>
+  <td>R$ 7.30</td>
+  <td>R$ 7.00</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP7 | Astrolabe (Field-Tested)</td>
+  <td>R$ 1.41</td>
+  <td>232</td>
+  <td>R$ 1.41</td>
+  <td>R$ 1.29</td>
+  <td>5.57%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Wildfire (Field-Tested)</td>
+  <td>R$ 307.59</td>
+  <td>231</td>
+  <td>R$ 301.14</td>
+  <td>R$ 291.75</td>
+  <td>5.48%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>R8 Revolver | Amber Fade (Minimal Wear)</td>
+  <td>R$ 8.10</td>
+  <td>230</td>
+  <td>R$ 8.41</td>
+  <td>R$ 8.10</td>
+  <td>12.42%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Tec-9 | Tiger Stencil (Factory New)</td>
+  <td>R$ 2.33</td>
+  <td>228</td>
+  <td>R$ 1.78</td>
+  <td>R$ 1.84</td>
+  <td>12.76%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Asiimov (Field-Tested)</td>
+  <td>R$ 814.69</td>
+  <td>227</td>
+  <td>R$ 721.83</td>
+  <td>R$ 718.89</td>
+  <td>6.18%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Souvenir USP-S | Purple DDPAT (Field-Tested)</td>
+  <td>R$ 17.18</td>
+  <td>225</td>
+  <td>R$ 15.89</td>
+  <td>R$ 16.57</td>
+  <td>6.29%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Naval Shred Camo (Factory New)</td>
+  <td>R$ 6.14</td>
+  <td>225</td>
+  <td>R$ 4.66</td>
+  <td>R$ 4.73</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Vaporwave (Field-Tested)</td>
+  <td>R$ 422.04</td>
+  <td>224</td>
+  <td>R$ 406.94</td>
+  <td>R$ 394.92</td>
+  <td>5.94%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Night Terror (Field-Tested)</td>
+  <td>R$ 13.75</td>
+  <td>222</td>
+  <td>R$ 13.50</td>
+  <td>R$ 13.38</td>
+  <td>9.48%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Printstream (Minimal Wear)</td>
+  <td>R$ 575.47</td>
+  <td>221</td>
+  <td>R$ 575.96</td>
+  <td>R$ 571.05</td>
+  <td>3.20%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Asiimov (Minimal Wear)</td>
+  <td>R$ 379.08</td>
+  <td>219</td>
+  <td>R$ 335.26</td>
+  <td>R$ 332.20</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Mortis (Field-Tested)</td>
+  <td>R$ 25.16</td>
+  <td>218</td>
+  <td>R$ 25.35</td>
+  <td>R$ 24.18</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Temukau (Minimal Wear)</td>
+  <td>R$ 388.04</td>
+  <td>217</td>
+  <td>R$ 384.85</td>
+  <td>R$ 367.54</td>
+  <td>14.53%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Ocean Topo (Minimal Wear)</td>
+  <td>R$ 4.54</td>
+  <td>215</td>
+  <td>R$ 2.88</td>
+  <td>R$ 2.33</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Acheron (Field-Tested)</td>
+  <td>R$ 4.73</td>
+  <td>214</td>
+  <td>R$ 4.73</td>
+  <td>R$ 4.73</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Eco (Field-Tested)</td>
+  <td>R$ 83.28</td>
+  <td>213</td>
+  <td>R$ 76.47</td>
+  <td>R$ 79.54</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Capillary (Field-Tested)</td>
+  <td>R$ 4.11</td>
+  <td>211</td>
+  <td>R$ 4.05</td>
+  <td>R$ 3.80</td>
+  <td>11.46%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Slate (Factory New)</td>
+  <td>R$ 129.00</td>
+  <td>209</td>
+  <td>R$ 116.05</td>
+  <td>R$ 110.71</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Moto Gloves | Blood Pressure (Field-Tested)</td>
+  <td>R$ 990.57</td>
+  <td>206</td>
+  <td>R$ 1017.45</td>
+  <td>R$ 985.66</td>
+  <td>6.81%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Disco Tech (Field-Tested)</td>
+  <td>R$ 32.16</td>
+  <td>205</td>
+  <td>R$ 32.40</td>
+  <td>R$ 31.11</td>
+  <td>12.36%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Golden Coil (Field-Tested)</td>
+  <td>R$ 438.86</td>
+  <td>204</td>
+  <td>R$ 432.66</td>
+  <td>R$ 428.67</td>
+  <td>7.27%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Chromatic Aberration (Field-Tested)</td>
+  <td>R$ 204.30</td>
+  <td>203</td>
+  <td>R$ 196.38</td>
+  <td>R$ 190.61</td>
+  <td>3.88%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Dual Berettas | Melondrama (Field-Tested)</td>
+  <td>R$ 37.80</td>
+  <td>200</td>
+  <td>R$ 37.74</td>
+  <td>R$ 36.09</td>
+  <td>4.20%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Neo-Noir (Minimal Wear)</td>
+  <td>R$ 251.68</td>
+  <td>199</td>
+  <td>R$ 253.40</td>
+  <td>R$ 249.78</td>
+  <td>2.07%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P250 | Cassette (Factory New)</td>
+  <td>R$ 3.07</td>
+  <td>199</td>
+  <td>R$ 3.80</td>
+  <td>R$ 3.07</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Chrome Cannon (Minimal Wear)</td>
+  <td>R$ 241.00</td>
+  <td>199</td>
+  <td>R$ 229.71</td>
+  <td>R$ 240.88</td>
+  <td>11.88%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Saibā Oni (Minimal Wear)</td>
+  <td>R$ 19.58</td>
+  <td>199</td>
+  <td>R$ 19.21</td>
+  <td>R$ 18.66</td>
+  <td>6.80%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Driver Gloves | Queen Jaguar (Field-Tested)</td>
+  <td>R$ 463.90</td>
+  <td>198</td>
+  <td>R$ 450.64</td>
+  <td>R$ 460.15</td>
+  <td>9.30%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P250 | Visions (Field-Tested)</td>
+  <td>R$ 23.26</td>
+  <td>197</td>
+  <td>R$ 22.15</td>
+  <td>R$ 20.87</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Black Nile (Minimal Wear)</td>
+  <td>R$ 47.56</td>
+  <td>197</td>
+  <td>R$ 39.71</td>
+  <td>R$ 40.26</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Zeno (Factory New)</td>
+  <td>R$ 14.48</td>
+  <td>197</td>
+  <td>R$ 12.89</td>
+  <td>R$ 12.95</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Zeno (Field-Tested)</td>
+  <td>R$ 3.38</td>
+  <td>196</td>
+  <td>R$ 3.62</td>
+  <td>R$ 3.25</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Zeus x27 | Tosai (Field-Tested)</td>
+  <td>R$ 3.25</td>
+  <td>196</td>
+  <td>R$ 2.95</td>
+  <td>R$ 2.88</td>
+  <td>4.75%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Black Lotus (Field-Tested)</td>
+  <td>R$ 20.50</td>
+  <td>195</td>
+  <td>R$ 13.26</td>
+  <td>R$ 11.91</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Urban DDPAT (Minimal Wear)</td>
+  <td>R$ 7.92</td>
+  <td>194</td>
+  <td>R$ 14.79</td>
+  <td>R$ 7.86</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Light Rail (Field-Tested)</td>
+  <td>R$ 7.79</td>
+  <td>194</td>
+  <td>R$ 7.67</td>
+  <td>R$ 7.55</td>
+  <td>9.26%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>UMP-45 | Crimson Foil (Field-Tested)</td>
+  <td>R$ 28.29</td>
+  <td>191</td>
+  <td>R$ 29.95</td>
+  <td>R$ 28.05</td>
+  <td>5.18%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Phantom Disruptor (Minimal Wear)</td>
+  <td>R$ 59.22</td>
+  <td>190</td>
+  <td>R$ 58.85</td>
+  <td>R$ 58.24</td>
+  <td>5.26%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | The Traitor (Field-Tested)</td>
+  <td>R$ 210.93</td>
+  <td>189</td>
+  <td>R$ 210.25</td>
+  <td>R$ 208.41</td>
+  <td>5.31%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Basilisk (Minimal Wear)</td>
+  <td>R$ 72.05</td>
+  <td>188</td>
+  <td>R$ 70.33</td>
+  <td>R$ 70.94</td>
+  <td>14.64%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Desolate Space (Minimal Wear)</td>
+  <td>R$ 139.86</td>
+  <td>188</td>
+  <td>R$ 140.72</td>
+  <td>R$ 139.62</td>
+  <td>8.60%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Serpent Strike (Field-Tested)</td>
+  <td>R$ 7.06</td>
+  <td>188</td>
+  <td>R$ 4.05</td>
+  <td>R$ 3.74</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | The Empress (Field-Tested)</td>
+  <td>R$ 508.94</td>
+  <td>187</td>
+  <td>R$ 499.55</td>
+  <td>R$ 484.94</td>
+  <td>6.25%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Specialist Gloves | Mogul (Field-Tested)</td>
+  <td>R$ 812.17</td>
+  <td>185</td>
+  <td>R$ 826.78</td>
+  <td>R$ 795.66</td>
+  <td>5.27%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Bad Trip (Field-Tested)</td>
+  <td>R$ 293.29</td>
+  <td>185</td>
+  <td>R$ 288.19</td>
+  <td>R$ 276.53</td>
+  <td>2.74%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Pipsqueak (Field-Tested)</td>
+  <td>R$ 3.93</td>
+  <td>183</td>
+  <td>R$ 3.44</td>
+  <td>R$ 3.13</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Trigger Discipline (Field-Tested)</td>
+  <td>R$ 5.65</td>
+  <td>182</td>
+  <td>R$ 5.40</td>
+  <td>R$ 5.65</td>
+  <td>11.38%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Shinobu (Field-Tested)</td>
+  <td>R$ 77.51</td>
+  <td>180</td>
+  <td>R$ 76.96</td>
+  <td>R$ 72.78</td>
+  <td>12.79%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Head Shot (Field-Tested)</td>
+  <td>R$ 210.19</td>
+  <td>180</td>
+  <td>R$ 213.20</td>
+  <td>R$ 208.60</td>
+  <td>7.28%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Heat Treated (Field-Tested)</td>
+  <td>R$ 47.93</td>
+  <td>180</td>
+  <td>R$ 38.79</td>
+  <td>R$ 47.01</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Nightwish (Field-Tested)</td>
+  <td>R$ 376.93</td>
+  <td>177</td>
+  <td>R$ 379.39</td>
+  <td>R$ 374.54</td>
+  <td>2.69%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Printstream (Field-Tested)</td>
+  <td>R$ 1369.47</td>
+  <td>176</td>
+  <td>R$ 1344.06</td>
+  <td>R$ 1334.61</td>
+  <td>5.03%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | 龍王 (Dragon King) (Minimal Wear)</td>
+  <td>R$ 170.30</td>
+  <td>175</td>
+  <td>R$ 166.13</td>
+  <td>R$ 161.03</td>
+  <td>7.21%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | AXIA (Field-Tested)</td>
+  <td>R$ 268.37</td>
+  <td>175</td>
+  <td>R$ 273.71</td>
+  <td>R$ 260.45</td>
+  <td>3.84%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Crakow! (Field-Tested)</td>
+  <td>R$ 286.17</td>
+  <td>175</td>
+  <td>R$ 282.98</td>
+  <td>R$ 268.92</td>
+  <td>12.49%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Black Lotus (Field-Tested)</td>
+  <td>R$ 124.40</td>
+  <td>174</td>
+  <td>R$ 119.55</td>
+  <td>R$ 118.26</td>
+  <td>5.63%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AUG | Eye of Zapems (Field-Tested)</td>
+  <td>R$ 25.96</td>
+  <td>174</td>
+  <td>R$ 27.19</td>
+  <td>R$ 24.30</td>
+  <td>9.87%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Night Terror (Minimal Wear)</td>
+  <td>R$ 20.74</td>
+  <td>173</td>
+  <td>R$ 20.74</td>
+  <td>R$ 20.62</td>
+  <td>4.86%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Rapid Eye Movement (Field-Tested)</td>
+  <td>R$ 38.17</td>
+  <td>173</td>
+  <td>R$ 36.94</td>
+  <td>R$ 35.90</td>
+  <td>5.13%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Driver Gloves | Rezan the Red (Field-Tested)</td>
+  <td>R$ 655.43</td>
+  <td>172</td>
+  <td>R$ 624.44</td>
+  <td>R$ 612.35</td>
+  <td>5.69%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Stone Cold (Minimal Wear)</td>
+  <td>R$ 50.51</td>
+  <td>171</td>
+  <td>R$ 38.29</td>
+  <td>R$ 38.23</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Monkeyflage (Minimal Wear)</td>
+  <td>R$ 1.35</td>
+  <td>169</td>
+  <td>R$ 1.17</td>
+  <td>R$ 1.10</td>
+  <td>4.52%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Night Terror (Factory New)</td>
+  <td>R$ 51.67</td>
+  <td>168</td>
+  <td>R$ 45.66</td>
+  <td>R$ 43.63</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | PC-GRN (Minimal Wear)</td>
+  <td>R$ 11.78</td>
+  <td>168</td>
+  <td>R$ 9.39</td>
+  <td>R$ 9.33</td>
+  <td>10.27%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Broken Fang Gloves | Yellow-banded (Field-Tested)</td>
+  <td>R$ 377.36</td>
+  <td>168</td>
+  <td>R$ 371.72</td>
+  <td>R$ 373.99</td>
+  <td>5.03%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P250 | Small Game (Field-Tested)</td>
+  <td>R$ 3.25</td>
+  <td>168</td>
+  <td>R$ 3.13</td>
+  <td>R$ 3.13</td>
+  <td>8.67%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | Water Elemental (Field-Tested)</td>
+  <td>R$ 132.31</td>
+  <td>166</td>
+  <td>R$ 115.25</td>
+  <td>R$ 101.94</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Cyrex (Factory New)</td>
+  <td>R$ 49.65</td>
+  <td>166</td>
+  <td>R$ 50.81</td>
+  <td>R$ 48.24</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | 龍王 (Dragon King) (Field-Tested)</td>
+  <td>R$ 101.51</td>
+  <td>165</td>
+  <td>R$ 92.42</td>
+  <td>R$ 93.90</td>
+  <td>8.81%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P2000 | Lifted Spirits (Minimal Wear)</td>
+  <td>R$ 1.23</td>
+  <td>163</td>
+  <td>R$ 1.23</td>
+  <td>R$ 1.17</td>
+  <td>3.60%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Sun in Leo (Minimal Wear)</td>
+  <td>R$ 196.94</td>
+  <td>162</td>
+  <td>R$ 186.38</td>
+  <td>R$ 186.93</td>
+  <td>6.60%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Nova | Yorkshire (Field-Tested)</td>
+  <td>R$ 3.50</td>
+  <td>162</td>
+  <td>R$ 4.17</td>
+  <td>R$ 3.50</td>
+  <td>7.98%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Silver (Factory New)</td>
+  <td>R$ 16.02</td>
+  <td>161</td>
+  <td>R$ 3.56</td>
+  <td>R$ 2.70</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Coolant (Factory New)</td>
+  <td>R$ 1.04</td>
+  <td>161</td>
+  <td>R$ 0.55</td>
+  <td>R$ 0.68</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Royal Guard (Factory New)</td>
+  <td>R$ 114.33</td>
+  <td>161</td>
+  <td>R$ 110.53</td>
+  <td>R$ 105.49</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Aphrodite (Field-Tested)</td>
+  <td>R$ 220.13</td>
+  <td>161</td>
+  <td>R$ 196.87</td>
+  <td>R$ 216.88</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP7 | Abyssal Apparition (Field-Tested)</td>
+  <td>R$ 38.23</td>
+  <td>159</td>
+  <td>R$ 35.90</td>
+  <td>R$ 36.21</td>
+  <td>3.86%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Specialist Gloves | Marble Fade (Field-Tested)</td>
+  <td>R$ 1176.65</td>
+  <td>158</td>
+  <td>R$ 1176.77</td>
+  <td>R$ 1161.00</td>
+  <td>12.52%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AK-47 | Nightwish (Minimal Wear)</td>
+  <td>R$ 471.26</td>
+  <td>158</td>
+  <td>R$ 425.60</td>
+  <td>R$ 419.65</td>
+  <td>3.53%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Specialist Gloves | Buckshot (Field-Tested)</td>
+  <td>R$ 402.40</td>
+  <td>157</td>
+  <td>R$ 391.79</td>
+  <td>R$ 385.53</td>
+  <td>6.26%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Echoing Sands (Field-Tested)</td>
+  <td>R$ 1.84</td>
+  <td>157</td>
+  <td>R$ 1.78</td>
+  <td>R$ 1.78</td>
+  <td>4.90%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Tec-9 | Whiteout (Field-Tested)</td>
+  <td>R$ 68.61</td>
+  <td>157</td>
+  <td>R$ 53.58</td>
+  <td>R$ 46.03</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Sport Gloves | Amphibious (Field-Tested)</td>
+  <td>R$ 2614.79</td>
+  <td>156</td>
+  <td>R$ 2655.48</td>
+  <td>R$ 2590.06</td>
+  <td>11.94%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Moto Gloves | Smoke Out (Field-Tested)</td>
+  <td>R$ 1024.57</td>
+  <td>156</td>
+  <td>R$ 919.14</td>
+  <td>R$ 896.68</td>
+  <td>8.12%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Memorial (Minimal Wear)</td>
+  <td>R$ 1.47</td>
+  <td>152</td>
+  <td>R$ 1.47</td>
+  <td>R$ 1.47</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Mortis (Minimal Wear)</td>
+  <td>R$ 36.76</td>
+  <td>151</td>
+  <td>R$ 35.72</td>
+  <td>R$ 35.78</td>
+  <td>5.40%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Hyper Beast (Field-Tested)</td>
+  <td>R$ 622.90</td>
+  <td>149</td>
+  <td>R$ 628.43</td>
+  <td>R$ 608.91</td>
+  <td>9.23%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Atheris (Factory New)</td>
+  <td>R$ 152.14</td>
+  <td>149</td>
+  <td>R$ 137.22</td>
+  <td>R$ 124.40</td>
+  <td>10.36%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Hand Wraps | Desert Shamagh (Field-Tested)</td>
+  <td>R$ 347.84</td>
+  <td>149</td>
+  <td>R$ 339.87</td>
+  <td>R$ 336.31</td>
+  <td>4.43%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Sawed-Off | Parched (Factory New)</td>
+  <td>R$ 3.99</td>
+  <td>149</td>
+  <td>R$ 3.99</td>
+  <td>R$ 3.62</td>
+  <td>0.21%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>R8 Revolver | Amber Fade (Factory New)</td>
+  <td>R$ 13.56</td>
+  <td>147</td>
+  <td>R$ 12.15</td>
+  <td>R$ 12.89</td>
+  <td>9.09%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Neo-Noir (Field-Tested)</td>
+  <td>R$ 229.71</td>
+  <td>147</td>
+  <td>R$ 228.23</td>
+  <td>R$ 225.04</td>
+  <td>4.73%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>R8 Revolver | Blaze (Factory New)</td>
+  <td>R$ 22.95</td>
+  <td>147</td>
+  <td>R$ 21.48</td>
+  <td>R$ 20.31</td>
+  <td>9.96%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Souvenir USP-S | Purple DDPAT (Factory New)</td>
+  <td>R$ 115.19</td>
+  <td>147</td>
+  <td>R$ 73.95</td>
+  <td>R$ 69.35</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Desert Tactical (Field-Tested)</td>
+  <td>R$ 1.96</td>
+  <td>147</td>
+  <td>R$ 1.90</td>
+  <td>R$ 1.84</td>
+  <td>11.50%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Mud-Spec (Field-Tested)</td>
+  <td>R$ 2.21</td>
+  <td>146</td>
+  <td>R$ 2.15</td>
+  <td>R$ 2.21</td>
+  <td>3.65%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Derailment (Field-Tested)</td>
+  <td>R$ 27.37</td>
+  <td>146</td>
+  <td>R$ 25.65</td>
+  <td>R$ 26.20</td>
+  <td>5.54%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | PC-GRN (Field-Tested)</td>
+  <td>R$ 3.87</td>
+  <td>145</td>
+  <td>R$ 3.80</td>
+  <td>R$ 3.80</td>
+  <td>13.16%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Zeus x27 | Olympus (Minimal Wear)</td>
+  <td>R$ 36.27</td>
+  <td>145</td>
+  <td>R$ 35.78</td>
+  <td>R$ 35.16</td>
+  <td>2.35%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Choppa (Minimal Wear)</td>
+  <td>R$ 1.66</td>
+  <td>145</td>
+  <td>R$ 1.60</td>
+  <td>R$ 1.66</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Vogue (Field-Tested)</td>
+  <td>R$ 38.79</td>
+  <td>144</td>
+  <td>R$ 38.91</td>
+  <td>R$ 38.42</td>
+  <td>5.25%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P250 | Visions (Minimal Wear)</td>
+  <td>R$ 32.34</td>
+  <td>144</td>
+  <td>R$ 32.16</td>
+  <td>R$ 31.67</td>
+  <td>7.96%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SSG 08 | Zeno (Minimal Wear)</td>
+  <td>R$ 5.46</td>
+  <td>144</td>
+  <td>R$ 5.28</td>
+  <td>R$ 5.03</td>
+  <td>4.82%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>SG 553 | Dragon Tech (Minimal Wear)</td>
+  <td>R$ 6.14</td>
+  <td>143</td>
+  <td>R$ 5.46</td>
+  <td>R$ 5.34</td>
+  <td>8.53%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Desert Eagle | Crimson Web (Field-Tested)</td>
+  <td>R$ 109.97</td>
+  <td>141</td>
+  <td>R$ 94.82</td>
+  <td>R$ 90.77</td>
+  <td>11.57%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Sport Gloves | Vice (Field-Tested)</td>
+  <td>R$ 4713.64</td>
+  <td>141</td>
+  <td>R$ 4436.86</td>
+  <td>R$ 4458.77</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Galil AR | Tuxedo (Field-Tested)</td>
+  <td>R$ 4.36</td>
+  <td>140</td>
+  <td>R$ 3.50</td>
+  <td>R$ 4.23</td>
+  <td>12.78%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Poly Mag (Minimal Wear)</td>
+  <td>R$ 1.41</td>
+  <td>140</td>
+  <td>R$ 1.23</td>
+  <td>R$ 1.17</td>
+  <td>5.69%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Etch Lord (Minimal Wear)</td>
+  <td>R$ 9.94</td>
+  <td>140</td>
+  <td>R$ 8.28</td>
+  <td>R$ 8.22</td>
+  <td>9.63%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Dual Berettas | Polished Malachite (Factory New)</td>
+  <td>R$ 10.13</td>
+  <td>139</td>
+  <td>R$ 11.11</td>
+  <td>R$ 10.13</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Ticket to Hell (Factory New)</td>
+  <td>R$ 62.66</td>
+  <td>138</td>
+  <td>R$ 52.72</td>
+  <td>R$ 52.10</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Glock-18 | AXIA (Minimal Wear)</td>
+  <td>R$ 376.50</td>
+  <td>138</td>
+  <td>R$ 392.03</td>
+  <td>R$ 373.99</td>
+  <td>5.87%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Valence (Field-Tested)</td>
+  <td>R$ 35.41</td>
+  <td>137</td>
+  <td>R$ 27.13</td>
+  <td>R$ 25.28</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Neo-Noir (Field-Tested)</td>
+  <td>R$ 247.26</td>
+  <td>136</td>
+  <td>R$ 209.09</td>
+  <td>R$ 204.36</td>
+  <td>8.23%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Exoskeleton (Field-Tested)</td>
+  <td>R$ 37.56</td>
+  <td>136</td>
+  <td>R$ 37.31</td>
+  <td>R$ 35.96</td>
+  <td>5.90%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Dual Berettas | Sweet Little Angels (Field-Tested)</td>
+  <td>R$ 26.20</td>
+  <td>136</td>
+  <td>R$ 24.67</td>
+  <td>R$ 23.57</td>
+  <td>3.45%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Black Lotus (Minimal Wear)</td>
+  <td>R$ 182.02</td>
+  <td>135</td>
+  <td>R$ 174.84</td>
+  <td>R$ 175.82</td>
+  <td>4.43%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Hydra Gloves | Emerald (Field-Tested)</td>
+  <td>R$ 270.52</td>
+  <td>135</td>
+  <td>R$ 273.59</td>
+  <td>R$ 269.54</td>
+  <td>4.51%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Sport Gloves | Bronze Morph (Field-Tested)</td>
+  <td>R$ 807.26</td>
+  <td>135</td>
+  <td>R$ 777.92</td>
+  <td>R$ 773.32</td>
+  <td>6.19%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AUG | Tom Cat (Field-Tested)</td>
+  <td>R$ 1.47</td>
+  <td>135</td>
+  <td>R$ 1.47</td>
+  <td>R$ 1.47</td>
+  <td>4.76%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Sport Gloves | Big Game (Field-Tested)</td>
+  <td>R$ 1280.54</td>
+  <td>135</td>
+  <td>R$ 1239.61</td>
+  <td>R$ 1220.59</td>
+  <td>4.74%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | Naval Shred Camo (Minimal Wear)</td>
+  <td>R$ 4.97</td>
+  <td>135</td>
+  <td>R$ 1.47</td>
+  <td>R$ 1.47</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Hybrid (Minimal Wear)</td>
+  <td>R$ 7.86</td>
+  <td>134</td>
+  <td>R$ 7.49</td>
+  <td>R$ 7.36</td>
+  <td>3.62%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>XM1014 | Mockingbird (Minimal Wear)</td>
+  <td>R$ 1.29</td>
+  <td>134</td>
+  <td>R$ 1.35</td>
+  <td>R$ 1.29</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MP7 | Bloodsport (Minimal Wear)</td>
+  <td>R$ 378.35</td>
+  <td>132</td>
+  <td>R$ 317.22</td>
+  <td>R$ 301.69</td>
+  <td>9.39%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Neo-Noir (Factory New)</td>
+  <td>R$ 348.46</td>
+  <td>132</td>
+  <td>R$ 338.21</td>
+  <td>R$ 331.95</td>
+  <td>3.26%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>★ Stiletto Knife | Tiger Tooth (Factory New)</td>
+  <td>R$ 1736.71</td>
+  <td>132</td>
+  <td>R$ 1776.41</td>
+  <td>R$ 1733.45</td>
+  <td>1.73%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AWP | Duality (Field-Tested)</td>
+  <td>R$ 42.59</td>
+  <td>131</td>
+  <td>R$ 42.47</td>
+  <td>R$ 41.36</td>
+  <td>6.63%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P250 | Nevermore (Minimal Wear)</td>
+  <td>R$ 8.41</td>
+  <td>131</td>
+  <td>R$ 7.67</td>
+  <td>R$ 7.73</td>
+  <td>9.03%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAC-10 | Disco Tech (Minimal Wear)</td>
+  <td>R$ 57.20</td>
+  <td>131</td>
+  <td>R$ 54.50</td>
+  <td>R$ 55.11</td>
+  <td>4.04%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Meow 36 (Minimal Wear)</td>
+  <td>R$ 1.29</td>
+  <td>131</td>
+  <td>R$ 1.35</td>
+  <td>R$ 1.23</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Crakow! (Minimal Wear)</td>
+  <td>R$ 573.56</td>
+  <td>131</td>
+  <td>R$ 607.68</td>
+  <td>R$ 542.51</td>
+  <td>8.87%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P250 | Constructivist (Factory New)</td>
+  <td>R$ 3.25</td>
+  <td>131</td>
+  <td>R$ 3.44</td>
+  <td>R$ 3.07</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A4 | Choppa (Field-Tested)</td>
+  <td>R$ 2.15</td>
+  <td>130</td>
+  <td>R$ 1.90</td>
+  <td>R$ 1.84</td>
+  <td>5.11%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>MAG-7 | Monster Call (Minimal Wear)</td>
+  <td>R$ 7.36</td>
+  <td>130</td>
+  <td>R$ 7.12</td>
+  <td>R$ 7.30</td>
+  <td>4.55%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Sawed-Off | Kiss♥Love (Field-Tested)</td>
+  <td>R$ 21.23</td>
+  <td>130</td>
+  <td>R$ 21.72</td>
+  <td>R$ 21.17</td>
+  <td>3.76%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>AWP | Black Nile (Factory New)</td>
+  <td>R$ 135.81</td>
+  <td>130</td>
+  <td>R$ 130.47</td>
+  <td>R$ 125.38</td>
+  <td>3.76%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A4 | Choppa (Minimal Wear)</td>
+  <td>R$ 6.75</td>
+  <td>129</td>
+  <td>R$ 6.20</td>
+  <td>R$ 6.20</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A4 | The Emperor (Minimal Wear)</td>
+  <td>R$ 490.71</td>
+  <td>129</td>
+  <td>R$ 474.45</td>
+  <td>R$ 448.49</td>
+  <td>5.62%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Emphorosaur-S (Minimal Wear)</td>
+  <td>R$ 23.14</td>
+  <td>128</td>
+  <td>R$ 22.46</td>
+  <td>R$ 22.46</td>
+  <td>9.17%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P250 | See Ya Later (Field-Tested)</td>
+  <td>R$ 513.42</td>
+  <td>128</td>
+  <td>R$ 500.35</td>
+  <td>R$ 481.45</td>
+  <td>2.37%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>M4A1-S | Player Two (Minimal Wear)</td>
+  <td>R$ 392.40</td>
+  <td>128</td>
+  <td>R$ 373.99</td>
+  <td>R$ 367.85</td>
+  <td>4.19%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>FAMAS | Rapid Eye Movement (Minimal Wear)</td>
+  <td>R$ 51.61</td>
+  <td>128</td>
+  <td>R$ 50.94</td>
+  <td>R$ 50.26</td>
+  <td>8.55%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>P2000 | Sure Grip (Minimal Wear)</td>
+  <td>R$ 1.29</td>
+  <td>128</td>
+  <td>R$ 1.29</td>
+  <td>R$ 1.29</td>
+  <td>6.09%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>Five-SeveN | Flame Test (Minimal Wear)</td>
+  <td>R$ 1.41</td>
+  <td>127</td>
+  <td>R$ 1.29</td>
+  <td>R$ 1.04</td>
+  <td>3.32%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>USP-S | Neo-Noir (Field-Tested)</td>
+  <td>R$ 509.06</td>
+  <td>127</td>
+  <td>R$ 498.32</td>
+  <td>R$ 482.55</td>
+  <td>2.36%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AWP | Chromatic Aberration (Field-Tested)</td>
+  <td>R$ 160.91</td>
+  <td>120</td>
+  <td>R$ 156.68</td>
+  <td>R$ 155.88</td>
+  <td>4.72%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Jawbreaker (Minimal Wear)</td>
+  <td>R$ 146.92</td>
+  <td>120</td>
+  <td>R$ 144.71</td>
+  <td>R$ 138.02</td>
+  <td>5.18%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Five-SeveN | Flame Test (Minimal Wear)</td>
+  <td>R$ 3.38</td>
+  <td>115</td>
+  <td>R$ 3.99</td>
+  <td>R$ 2.76</td>
+  <td>7.48%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Black Lotus (Field-Tested)</td>
+  <td>R$ 31.79</td>
+  <td>115</td>
+  <td>R$ 32.53</td>
+  <td>R$ 29.03</td>
+  <td>5.71%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Shinobu (Minimal Wear)</td>
+  <td>R$ 151.22</td>
+  <td>115</td>
+  <td>R$ 145.94</td>
+  <td>R$ 144.22</td>
+  <td>11.90%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Five-SeveN | Flame Test (Field-Tested)</td>
+  <td>R$ 1.35</td>
+  <td>114</td>
+  <td>R$ 1.35</td>
+  <td>R$ 0.98</td>
+  <td>8.47%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Searing Rage (Field-Tested)</td>
+  <td>R$ 81.99</td>
+  <td>114</td>
+  <td>R$ 74.01</td>
+  <td>R$ 70.88</td>
+  <td>11.85%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Cortex (Field-Tested)</td>
+  <td>R$ 52.53</td>
+  <td>108</td>
+  <td>R$ 57.26</td>
+  <td>R$ 52.23</td>
+  <td>6.11%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Printstream (Field-Tested)</td>
+  <td>R$ 380.80</td>
+  <td>106</td>
+  <td>R$ 389.27</td>
+  <td>R$ 373.99</td>
+  <td>4.28%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Printstream (Field-Tested)</td>
+  <td>R$ 438.37</td>
+  <td>101</td>
+  <td>R$ 401.79</td>
+  <td>R$ 401.18</td>
+  <td>3.88%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Uncharted (Field-Tested)</td>
+  <td>R$ 18.90</td>
+  <td>100</td>
+  <td>R$ 17.98</td>
+  <td>R$ 17.74</td>
+  <td>3.31%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Blue Ply (Minimal Wear)</td>
+  <td>R$ 16.75</td>
+  <td>99</td>
+  <td>R$ 14.61</td>
+  <td>R$ 16.08</td>
+  <td>4.51%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Elite Build (Field-Tested)</td>
+  <td>R$ 45.11</td>
+  <td>95</td>
+  <td>R$ 42.77</td>
+  <td>R$ 42.35</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ P250 | Supernova (Minimal Wear)</td>
+  <td>R$ 16.88</td>
+  <td>95</td>
+  <td>R$ 16.69</td>
+  <td>R$ 16.20</td>
+  <td>4.05%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ MP5-SD | Kitbash (Field-Tested)</td>
+  <td>R$ 3.80</td>
+  <td>95</td>
+  <td>R$ 3.80</td>
+  <td>R$ 3.68</td>
+  <td>0.94%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Vogue (Minimal Wear)</td>
+  <td>R$ 71.80</td>
+  <td>94</td>
+  <td>R$ 70.94</td>
+  <td>R$ 68.98</td>
+  <td>2.50%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A4 | Tooth Fairy (Field-Tested)</td>
+  <td>R$ 46.09</td>
+  <td>92</td>
+  <td>R$ 48.85</td>
+  <td>R$ 43.39</td>
+  <td>5.18%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Head Shot (Field-Tested)</td>
+  <td>R$ 205.10</td>
+  <td>92</td>
+  <td>R$ 203.26</td>
+  <td>R$ 203.38</td>
+  <td>6.13%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Black Lotus (Minimal Wear)</td>
+  <td>R$ 65.17</td>
+  <td>90</td>
+  <td>R$ 65.60</td>
+  <td>R$ 59.53</td>
+  <td>3.49%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A4 | Etch Lord (Minimal Wear)</td>
+  <td>R$ 22.71</td>
+  <td>89</td>
+  <td>R$ 20.37</td>
+  <td>R$ 19.82</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ SSG 08 | Abyss (Field-Tested)</td>
+  <td>R$ 6.14</td>
+  <td>82</td>
+  <td>R$ 5.71</td>
+  <td>R$ 6.08</td>
+  <td>14.74%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Light Rail (Minimal Wear)</td>
+  <td>R$ 45.48</td>
+  <td>81</td>
+  <td>R$ 45.05</td>
+  <td>R$ 43.14</td>
+  <td>3.46%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Five-SeveN | Urban Hazard (Factory New)</td>
+  <td>R$ 56.77</td>
+  <td>79</td>
+  <td>R$ 48.30</td>
+  <td>R$ 45.35</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AWP | Atheris (Minimal Wear)</td>
+  <td>R$ 112.74</td>
+  <td>79</td>
+  <td>R$ 112.74</td>
+  <td>R$ 106.35</td>
+  <td>7.23%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Water Elemental (Minimal Wear)</td>
+  <td>R$ 218.85</td>
+  <td>75</td>
+  <td>R$ 211.79</td>
+  <td>R$ 202.46</td>
+  <td>9.10%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Inheritance (Field-Tested)</td>
+  <td>R$ 652.42</td>
+  <td>74</td>
+  <td>R$ 670.28</td>
+  <td>R$ 633.21</td>
+  <td>3.91%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Block-18 (Field-Tested)</td>
+  <td>R$ 18.10</td>
+  <td>74</td>
+  <td>R$ 10.25</td>
+  <td>R$ 9.33</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ MAG-7 | Monster Call (Field-Tested)</td>
+  <td>R$ 4.11</td>
+  <td>73</td>
+  <td>R$ 4.23</td>
+  <td>R$ 4.11</td>
+  <td>12.43%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Printstream (Minimal Wear)</td>
+  <td>R$ 552.33</td>
+  <td>72</td>
+  <td>R$ 569.82</td>
+  <td>R$ 548.89</td>
+  <td>6.49%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Searing Rage (Minimal Wear)</td>
+  <td>R$ 120.96</td>
+  <td>72</td>
+  <td>R$ 119.55</td>
+  <td>R$ 118.81</td>
+  <td>4.55%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A1-S | Liquidation (Field-Tested)</td>
+  <td>R$ 64.19</td>
+  <td>72</td>
+  <td>R$ 78.00</td>
+  <td>R$ 63.64</td>
+  <td>15.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A4 | Magnesium (Minimal Wear)</td>
+  <td>R$ 22.22</td>
+  <td>71</td>
+  <td>R$ 20.13</td>
+  <td>R$ 20.01</td>
+  <td>6.75%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Glock-18 | Clear Polymer (Minimal Wear)</td>
+  <td>R$ 9.76</td>
+  <td>71</td>
+  <td>R$ 9.76</td>
+  <td>R$ 9.21</td>
+  <td>9.16%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ MP5-SD | Necro Jr. (Minimal Wear)</td>
+  <td>R$ 1.41</td>
+  <td>71</td>
+  <td>R$ 1.41</td>
+  <td>R$ 1.41</td>
+  <td>6.89%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ M4A4 | Neo-Noir (Field-Tested)</td>
+  <td>R$ 220.93</td>
+  <td>70</td>
+  <td>R$ 208.29</td>
+  <td>R$ 202.40</td>
+  <td>4.81%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Desert Eagle | Mecha Industries (Field-Tested)</td>
+  <td>R$ 84.69</td>
+  <td>70</td>
+  <td>R$ 82.17</td>
+  <td>R$ 80.52</td>
+  <td>7.46%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Legion of Anubis (Minimal Wear)</td>
+  <td>R$ 274.81</td>
+  <td>70</td>
+  <td>R$ 267.57</td>
+  <td>R$ 265.24</td>
+  <td>2.38%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ FAMAS | Rapid Eye Movement (Field-Tested)</td>
+  <td>R$ 37.25</td>
+  <td>70</td>
+  <td>R$ 35.90</td>
+  <td>R$ 34.37</td>
+  <td>5.28%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ Sawed-Off | Analog Input (Field-Tested)</td>
+  <td>R$ 7.06</td>
+  <td>70</td>
+  <td>R$ 6.51</td>
+  <td>R$ 6.44</td>
+  <td>3.62%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ USP-S | Cyrex (Minimal Wear)</td>
+  <td>R$ 46.27</td>
+  <td>69</td>
+  <td>R$ 46.52</td>
+  <td>R$ 45.48</td>
+  <td>5.79%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AWP | Mortis (Field-Tested)</td>
+  <td>R$ 54.80</td>
+  <td>67</td>
+  <td>R$ 54.80</td>
+  <td>R$ 46.09</td>
+  <td>11.87%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ AK-47 | Asiimov (Field-Tested)</td>
+  <td>R$ 439.10</td>
+  <td>67</td>
+  <td>R$ 408.11</td>
+  <td>R$ 386.32</td>
+  <td>7.00%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ SSG 08 | Fever Dream (Minimal Wear)</td>
+  <td>R$ 34.74</td>
+  <td>67</td>
+  <td>R$ 33.02</td>
+  <td>R$ 32.22</td>
+  <td>2.18%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+<tr>
+  <td>StatTrak™ P90 | Wave Breaker (Minimal Wear)</td>
+  <td>R$ 17.00</td>
+  <td>67</td>
+  <td>R$ 14.79</td>
+  <td>R$ 14.24</td>
+  <td>8.18%/dia</td>
+  <td><b>0.00%</b></td>
+  <td>3 dias</td>
+  <td class="red">PASS</td>
+</tr>
+
+  </tbody>
+</table>
+
+<p class="small" style="margin-top:14px;">
+  Nota: isso é heurística (não é garantia). Volume 30d alto = mais liquidez.
+</p>
+
+<script>
+let sortDir = 1;
+let lastCol = -1;
+
+function parseCellText(td) {
+  const txt = td.innerText.trim();
+  const cleaned = txt
+    .replace("R$", "")
+    .replace("%/dia", "")
+    .replace("%", "")
+    .replace("dias", "")
+    .replace(",", ".")
+    .trim();
+
+  const num = parseFloat(cleaned);
+  if (!isNaN(num)) return num;
+  return txt.toLowerCase();
+}
+
+function sortTable(col) {
+  const table = document.getElementById("t");
+  const tbody = table.tBodies[0];
+  const rows = Array.from(tbody.rows);
+
+  if (col === lastCol) sortDir *= -1;
+  else {
+    sortDir = 1;
+    lastCol = col;
+  }
+
+  rows.sort((a, b) => {
+    const av = parseCellText(a.cells[col]);
+    const bv = parseCellText(b.cells[col]);
+
+    if (typeof av === "number" && typeof bv === "number") {
+      return (av - bv) * sortDir;
+    }
+    if (av < bv) return -1 * sortDir;
+    if (av > bv) return  1 * sortDir;
+    return 0;
+  });
+
+  rows.forEach(r => tbody.appendChild(r));
+}
+
+function filterRows() {
+  const q = document.getElementById("q").value.toLowerCase();
+  const table = document.getElementById("t");
+  const tbody = table.tBodies[0];
+  Array.from(tbody.rows).forEach(r => {
+    const name = r.cells[0].innerText.toLowerCase();
+    r.style.display = name.includes(q) ? "" : "none";
+  });
+}
+</script>
+
 </body>
 </html>

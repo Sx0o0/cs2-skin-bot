@@ -1,11 +1,15 @@
 import csv
 import os
+import json
 from datetime import datetime, timezone
 from typing import List, Dict, Tuple
 from urllib.parse import quote
 
 import requests
 
+# -----------------------------
+# CONFIG
+# -----------------------------
 SKINPORT_HISTORY_URL = "https://api.skinport.com/v1/sales/history"
 APP_ID = 730
 CURRENCY = "BRL"
@@ -14,7 +18,7 @@ HISTORY_FILE = "skin_history.csv"
 OUTPUT_HTML = "index.html"
 
 TOTAL_ITEMS = 500
-STAT_TRAK_QUOTA = 120  # ajuste se quiser mais StatTrak™
+STAT_TRAK_QUOTA = 120
 
 ALLOWED_WEAR = ("(Field-Tested)", "(Minimal Wear)", "(Factory New)")
 MIN_VOL_30D = 10
@@ -22,7 +26,15 @@ MIN_CUR_PRICE = 1.0
 MAX_CUR_PRICE = 10000.0
 MAX_EXPECTED_PROFIT_PCT = 35.0
 
+# ✅ SteamApis (sem api_key para Images/Items) :contentReference[oaicite:2]{index=2}
+STEAMAPIS_IMAGE_ITEMS_URL = f"https://api.steamapis.com/image/items/{APP_ID}"
+IMAGE_MAP_CACHE_FILE = "image_map_cache.json"
+IMAGE_MAP_MAX_AGE_DAYS = 7  # atualiza o mapa 1x por semana
 
+
+# -----------------------------
+# HELPERS
+# -----------------------------
 def clamp(x: float, a: float, b: float) -> float:
     return max(a, min(b, x))
 
@@ -121,33 +133,89 @@ def placeholder_svg_data_uri(name: str) -> str:
     return "data:image/svg+xml;charset=utf-8," + quote(svg)
 
 
+# -----------------------------
+# IMAGES (SteamApis cache)
+# -----------------------------
+def load_image_map_cache() -> Tuple[Dict[str, str], datetime]:
+    if not os.path.exists(IMAGE_MAP_CACHE_FILE):
+        return {}, datetime.fromtimestamp(0, tz=timezone.utc)
+
+    try:
+        with open(IMAGE_MAP_CACHE_FILE, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+
+        ts = payload.get("fetched_at", "")
+        fetched_at = datetime.fromisoformat(ts.replace("Z", "+00:00")) if ts else datetime.fromtimestamp(0, tz=timezone.utc)
+        mapping = payload.get("mapping", {})
+        if isinstance(mapping, dict):
+            return mapping, fetched_at
+    except:
+        pass
+
+    return {}, datetime.fromtimestamp(0, tz=timezone.utc)
+
+
+def save_image_map_cache(mapping: Dict[str, str]) -> None:
+    payload = {
+        "fetched_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "mapping": mapping
+    }
+    with open(IMAGE_MAP_CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(payload, f)
+
+
+def fetch_image_map_if_needed() -> Dict[str, str]:
+    mapping, fetched_at = load_image_map_cache()
+    age_days = (datetime.now(timezone.utc) - fetched_at).total_seconds() / 86400.0
+
+    if mapping and age_days < IMAGE_MAP_MAX_AGE_DAYS:
+        return mapping
+
+    # baixa o mapa completo 1x (é grande, mas é 1 request só)
+    try:
+        r = requests.get(STEAMAPIS_IMAGE_ITEMS_URL, timeout=90)
+        r.raise_for_status()
+        data = r.json()
+        if isinstance(data, dict) and data:
+            save_image_map_cache(data)
+            return data
+    except Exception as e:
+        print("Erro SteamApis images:", e)
+
+    # se falhar, usa o cache antigo (se existir)
+    return mapping
+
+
+def get_image_url(name: str, image_map: Dict[str, str]) -> str:
+    url = image_map.get(name)
+    if isinstance(url, str) and url.startswith("http"):
+        return url
+    return placeholder_svg_data_uri(name)
+
+
+# -----------------------------
+# API Skinport
+# -----------------------------
 def fetch_skinport_history() -> List[dict]:
     params = {"app_id": APP_ID, "currency": CURRENCY}
     headers = {
-        # obrigatório nesse endpoint :contentReference[oaicite:1]{index=1}
-        "Accept-Encoding": "br",
+        "Accept-Encoding": "br",  # obrigatório :contentReference[oaicite:3]{index=3}
         "User-Agent": "cs2-skin-radar/1.0 (+github-actions)"
     }
 
     try:
         r = requests.get(SKINPORT_HISTORY_URL, params=params, headers=headers, timeout=60)
         r.raise_for_status()
-
-        # Debug útil se vier HTML/erro/limite
-        ct = r.headers.get("content-type", "")
-        if "application/json" not in ct:
-            print("Skinport content-type estranho:", ct)
-            print("Primeiros bytes:", r.text[:200])
-            return []
-
         data = r.json()
         return data if isinstance(data, list) else []
-
     except Exception as e:
         print("Erro API Skinport:", e)
         return []
 
 
+# -----------------------------
+# HISTORY CSV
+# -----------------------------
 def append_history(ts: str, name: str, cur: float, vol30: int) -> None:
     exists = os.path.isfile(HISTORY_FILE)
     with open(HISTORY_FILE, "a", newline="", encoding="utf-8") as f:
@@ -157,6 +225,9 @@ def append_history(ts: str, name: str, cur: float, vol30: int) -> None:
         w.writerow([ts, name, cur, vol30])
 
 
+# -----------------------------
+# HTML (cards + table)
+# -----------------------------
 def generate_html(rows: List[Dict]) -> None:
     updated = datetime.now().strftime("%Y-%m-%d %H:%M")
 
@@ -284,7 +355,7 @@ def generate_html(rows: List[Dict]) -> None:
 <body>
 <div class="wrap">
   <h1>🚀 CS2 Skin Radar</h1>
-  <p class="muted">Atualizado: {updated} • 500 skins (FT/MW/FN + StatTrak™) • base: Skinport sales/history</p>
+  <p class="muted">Atualizado: {updated} • 500 skins (FT/MW/FN + StatTrak™) • imagens via Steam CDN</p>
 
   <div class="bar">
     <input id="q" placeholder="Buscar skin..." oninput="filterRows()"/>
@@ -366,6 +437,9 @@ function filterRows() {{
 def main():
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+    # ✅ carrega o mapa de imagens (cache)
+    image_map = fetch_image_map_if_needed()
+
     data = fetch_skinport_history()
     if not data:
         print("API vazia")
@@ -423,6 +497,9 @@ def main():
 
         append_history(ts, name, cur, vol30v)
 
+        # ✅ imagem real se existir no mapa; senão placeholder
+        img = get_image_url(name, image_map)
+
         rows.append({
             "skin": name,
             "cur": cur,
@@ -434,7 +511,7 @@ def main():
             "hold_days": hold_days,
             "sig": sig,
             "color": color,
-            "img": placeholder_svg_data_uri(name),
+            "img": img,
             "item_page": item_page,
             "market_page": market_page,
         })

@@ -2,7 +2,7 @@ name: run-bot
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # a cada 6 horas
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests pandas brotli
+          pip install requests
 
       - name: Run bot
         run: |
@@ -33,6 +33,6 @@ jobs:
         run: |
           git config --global user.name "actions-user"
           git config --global user.email "actions@github.com"
-          git add index.html skin_history.csv || true
-          git commit -m "Atualiza ranking de skins" || echo "Sem mudanças"
+          git add index.html skin_history.csv image_cache.csv || true
+          git commit -m "Update CS2 Skin Radar" || echo "Sem mudanças"
           git push

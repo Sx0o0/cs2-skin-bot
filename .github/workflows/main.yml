@@ -23,9 +23,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests brotli
+          pip install requests brotli pynacl
 
       - name: Run bot
+        env:
+          DMARKET_API_KEY: ${{ secrets.DMARKET_API_KEY }}
+          DMARKET_API_SECRET: ${{ secrets.DMARKET_API_SECRET }}
         run: |
           python cs2_skin_bot.py
 
